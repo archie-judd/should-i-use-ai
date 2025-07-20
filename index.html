@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Should I Use AI? - Decision Flowchart</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .flowchart-container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            padding: 40px;
+            max-width: 800px;
+            width: 100%;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            color: #2d3748;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            color: #718096;
+            font-size: 1.1rem;
+        }
+        
+        .question-card {
+            background: #f8fafc;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 20px;
+            border-left: 5px solid #4299e1;
+        }
+        
+        .question {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 20px;
+        }
+        
+        .examples {
+            background: #edf2f7;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .examples h4 {
+            color: #4a5568;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .example-list {
+            font-size: 0.9rem;
+            color: #718096;
+            line-height: 1.5;
+        }
+        
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .option-btn {
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+            color: #4a5568;
+            text-align: left;
+        }
+        
+        .option-btn:hover {
+            border-color: #4299e1;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(66, 153, 225, 0.15);
+        }
+        
+        .result-card {
+            background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+            color: white;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .result-card.avoid {
+            background: linear-gradient(135deg, #f56565 0%, #e53e3e 100%);
+        }
+        
+        .result-card.minimal {
+            background: linear-gradient(135deg, #ed8936 0%, #dd6b20 100%);
+        }
+        
+        .result-card.assistant {
+            background: linear-gradient(135deg, #4299e1 0%, #3182ce 100%);
+        }
+        
+        .result-card.reconsider {
+            background: linear-gradient(135deg, #9f7aea 0%, #805ad5 100%);
+        }
+        
+        .result-title {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        
+        .result-description {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            opacity: 0.95;
+        }
+        
+        .restart-btn {
+            background: #2d3748;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 12px 24px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .restart-btn:hover {
+            background: #1a202c;
+            transform: translateY(-1px);
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        @media (max-width: 600px) {
+            .flowchart-container {
+                padding: 20px;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .question {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="flowchart-container">
+        <div class="header">
+            <h1>Should I Use AI?</h1>
+            <p>A decision flowchart to help you use AI thoughtfully</p>
+        </div>
+        
+        <div id="start" class="question-card">
+            <h2 class="question">What's your main goal here?</h2>
+            <div class="options">
+                <div class="option-btn" onclick="goToSection('task')">
+                    <strong>1. I want to complete a task</strong>
+                    <div class="examples">
+                        <h4>Examples:</h4>
+                        <div class="example-list">Building a budget, creating a shopping list, coding a module, organizing documents, generating recipe ideas, troubleshooting technical issues, formatting a presentation</div>
+                    </div>
+                </div>
+                
+                <div class="option-btn" onclick="goToSection('advice')">
+                    <strong>2. I want to ask for advice or feedback</strong>
+                    <div class="examples">
+                        <h4>Examples:</h4>
+                        <div class="example-list">Relationship advice, career decisions, style advice, feedback on writing or work, life transitions, parenting decisions, financial planning advice</div>
+                    </div>
+                </div>
+                
+                <div class="option-btn" onclick="goToSection('learn')">
+                    <strong>3. I want to research or learn</strong>
+                    <div class="examples">
+                        <h4>Examples:</h4>
+                        <div class="example-list">Exploring philosophical questions, understanding complex topics, developing new skills, academic research, learning about historical events, studying for exams</div>
+                    </div>
+                </div>
+                
+                <div class="option-btn" onclick="goToSection('express')">
+                    <strong>4. I want to express something personal or creative</strong>
+                    <div class="examples">
+                        <h4>Examples:</h4>
+                        <div class="example-list">Creative writing, personal messages to friends/family, artistic projects, social media posts, cover letters, personal statements, heartfelt communications</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Task Completion Flow -->
+        <div id="task-1" class="question-card hidden">
+            <h2 class="question">Is this something you know how to do but want to do faster/easier?</h2>
+            <div class="examples">
+                <h4>Examples of things you already know how to do:</h4>
+                <div class="example-list">Writing professional emails, basic cooking, organizing files, simple calculations, routine work tasks you've done many times before</div>
+            </div>
+            <div class="options">
+                <div class="option-btn" onclick="showResult('friendly', 'AI can help you work more efficiently on familiar tasks.')">Yes</div>
+                <div class="option-btn" onclick="goToSection('task-2')">No</div>
+            </div>
+        </div>
+        
+        <div id="task-2" class="question-card hidden">
+            <h2 class="question">Is this a skill you want to develop or get better at?</h2>
+            <div class="examples">
+                <h4>Skills you might want to develop:</h4>
+                <div class="example-list">Programming, writing, design, cooking techniques, data analysis, public speaking, project management, financial planning</div>
+            </div>
+            <div class="options">
+                <div class="option-btn" onclick="goToSection('task-3')">Yes</div>
+                <div class="option-btn" onclick="showResult('friendly', 'Focus your learning energy elsewhere - let AI handle this.')">No</div>
+            </div>
+        </div>
+        
+        <div id="task-3" class="question-card hidden">
+            <h2 class="question">Would figuring this out yourself help you become more capable in the future?</h2>
+            <div class="examples">
+                <h4>Things that build future capability:</h4>
+                <div class="example-list">Learning to debug code, developing problem-solving approaches, understanding fundamental concepts, building systematic thinking skills</div>
+            </div>
+            <div class="options">
+                <div class="option-btn" onclick="showResult('avoid', 'This is a growth opportunity. Try it yourself first, then maybe use AI to check your work.')">Yes</div>
+                <div class="option-btn" onclick="goToSection('task-4')">No</div>
+            </div>
+        </div>
+        
+        <div id="task-4" class="question-card hidden">
+            <h2 class="question">Are you trying to learn the underlying principles, or just get this specific thing done?</h2>
+            <div class="examples">
+                <h4>Learning principles vs. getting things done:</h4>
+                <div class="example-list"><strong>Principles:</strong> Understanding how algorithms work, learning design theory, grasping business strategy<br><strong>Just get it done:</strong> Fix this one bug, format this document, solve this immediate problem</div>
+            </div>
+            <div class="options">
+                <div class="option-btn" onclick="showResult('minimal', 'Use AI for guidance or examples, but work through the thinking yourself.')">Learn principles</div>
+                <div class="option-btn" onclick="showResult('assistant', 'Use AI to help, but understand what it\'s doing so you learn something along the way.')">Just get it done</div>
+            </div>
+        </div>
+        
+        <!-- Advice/Feedback Flow -->
+        <div id="advice-1" class="question-card hidden">
+            <h2 class="question">Are you trying to develop better decision-making skills in this area?</h2>
+            <div class="examples">
+                <h4>Areas where decision-making skills matter:</h4>
+                <div class="example-list">Leadership situations, conflict resolution, financial decisions, relationship navigation, career planning, parenting challenges</div>
+            </div>
+            <div class="options">
+                <div class="option-btn" onclick="goToSection('advice-2')">Yes</div>
+                <div class="option-btn" onclick="goToSection('advice-3')">No</div>
+            </div>
+        </div>
+        
+        <div id="advice-2" class="question-card hidden">
+            <h2 class="question">Is this a situation where learning to think it through yourself would help you in similar future situations?</h2>
+            <div class="examples">
+                <h4>Transferable thinking skills:</h4>
+                <div class="example-list">How to approach difficult conversations, frameworks for making tough decisions, strategies for managing conflict, methods for evaluating options</div>
+            </div>
+            <div class="options">
+                <div class="option-btn" onclick="showResult('avoid', 'Work through your own reasoning first. Maybe use AI afterward to compare perspectives, but develop your judgment first.')">Yes</div>
+                <div class="option-btn" onclick="showResult('minimal', 'Use AI for initial perspective, but make sure you\'re forming your own opinions too.')">No</div>
+            </div>
+        </div>
+        
+        <div id="advice-3" class="question-card hidden">
+            <h2 class="question">Does this decision reflect your personal values, relationships, or life situation that only you fully understand?</h2>
+            <div class="examples">
+                <h4>Highly personal decisions:</h4>
+                <div class="example-list">Family dynamics, intimate relationships, personal boundaries, career choices based on your values, decisions affecting people close to you</div>
+            </div>
+            <div class="options">
+                <div class="option-btn" onclick="showResult('minimal', 'AI can offer general perspectives, but the decision needs to come from your understanding of your specific situation.')">Yes</div>
+                <div class="option-btn" onclick="goToSection('advice-4')">No</div>
+            </div>
+        </div>
+        
+        <div id="advice-4" class="question-card hidden">
+            <h2 class="question">Are you looking for a range of perspectives to consider, or do you want someone else to tell you what to do?</h2>
+            <div class="examples">
+                <h4>Different approaches to advice:</h4>
+                <div class="example-list"><strong>Range of perspectives:</strong> "Help me see different angles on this issue"<br><strong>Tell me what to do:</strong> "Just give me the answer" or "What should I do?"</div>
+            </div>
+            <div class="options">
+                <div class="option-btn" onclick="showResult('assistant', 'AI can help you see different angles, but you evaluate and decide.')">Range of perspectives</div>
+                <div class="option-btn" onclick="showResult('reconsider', 'Consider whether you\'re avoiding developing your own judgment. What would help you become more confident making these decisions yourself?')">Tell me what to do</div>
+            </div>
+        </div>
+        
+        <!-- Research/Learn Flow -->
+        <div id="learn-1" class="question-card hidden">
+            <h2 class="question">Are you trying to develop research skills, critical thinking, or deep understanding of this topic?</h2>
+            <div class="examples">
+                <h4>Skills and deep understanding:</h4>
+                <div class="example-list">Learning how to evaluate sources, developing analytical thinking, building expertise in a field, understanding complex systems, academic research methods</div>
+            </div>
+            <div class="options">
+                <div class="option-btn" onclick="goToSection('learn-2')">Yes</div>
+                <div class="option-btn" onclick="goToSection('learn-4')">No</div>
+            </div>
+        </div>
+        
+        <div id="learn-2" class="question-card hidden">
+            <h2 class="question">Is this a new area where you want to learn how to find and evaluate information yourself?</h2>
+            <div class="examples">
+                <h4>Learning research skills in new areas:</h4>
+                <div class="example-list">First time researching medical conditions, learning to evaluate financial advice, understanding how to assess scientific studies, exploring a completely new field</div>
+            </div>
+            <div class="options">
+                <div class="option-btn" onclick="showResult('avoid', 'Learning to research effectively is a crucial skill. Try finding sources yourself first, then use AI to help verify or expand what you found.')">Yes</div>
+                <div class="option-btn" onclick="goToSection('learn-3')">No</div>
+            </div>
+        </div>
+        
+        <div id="learn-3" class="question-card hidden">
+            <h2 class="question">Is the process of working through complex ideas yourself important for your understanding?</h2>
+            <div class="examples">
+                <h4>Complex thinking processes:</h4>
+                <div class="example-list">Philosophical concepts, mathematical proofs, scientific theories, connecting different ideas, developing your own frameworks for understanding</div>
+            </div>
+            <div class="options">
+                <div class="option-btn" onclick="showResult('minimal', 'Use AI for clarification or examples, but do the thinking work yourself to build comprehension.')">Yes</div>
+                <div class="option-btn" onclick="showResult('assistant', 'AI can help accelerate your learning, but engage actively with what it provides.')">No</div>
+            </div>
+        </div>
+        
+        <div id="learn-4" class="question-card hidden">
+            <h2 class="question">Do you need to be able to explain this to others or use this knowledge independently later?</h2>
+            <div class="examples">
+                <h4>Knowledge you need to internalize:</h4>
+                <div class="example-list">Information for work presentations, concepts you'll teach others, knowledge for exams, skills you'll use regularly, understanding for important decisions</div>
+            </div>
+            <div class="options">
+                <div class="option-btn" onclick="showResult('assistant', 'Use AI efficiently, but make sure you truly understand what you\'re learning.')">Yes</div>
+                <div class="option-btn" onclick="showResult('friendly', 'AI can provide the information you need quickly.')">No</div>
+            </div>
+        </div>
+        
+        <!-- Express/Creative Flow -->
+        <div id="express-1" class="question-card hidden">
+            <h2 class="question">Is this meant to reflect your unique voice, perspective, or personality?</h2>
+            <div class="examples">
+                <h4>Personal expression:</h4>
+                <div class="example-list">Messages to loved ones, personal essays, creative writing that reflects your experiences, social media posts about your life, cover letters, artistic projects</div>
+            </div>
+            <div class="options">
+                <div class="option-btn" onclick="goToSection('express-2')">Yes</div>
+                <div class="option-btn" onclick="goToSection('express-4')">No</div>
+            </div>
+        </div>
+        
+        <div id="express-2" class="question-card hidden">
+            <h2 class="question">Is the creative process itself important to you, not just the end result?</h2>
+            <div class="examples">
+                <h4>When the process matters:</h4>
+                <div class="example-list">Writing for therapeutic reasons, creative hobbies you enjoy, artistic expression as meditation, journaling, crafting something with your hands</div>
+            </div>
+            <div class="options">
+                <div class="option-btn" onclick="showResult('avoid', 'The act of creating is part of the value. Do this yourself to maintain the authentic creative experience.')">Yes</div>
+                <div class="option-btn" onclick="goToSection('express-3')">No</div>
+            </div>
+        </div>
+        
+        <div id="express-3" class="question-card hidden">
+            <h2 class="question">Would AI input dilute what makes this authentically yours?</h2>
+            <div class="examples">
+                <h4>Things that should stay authentically you:</h4>
+                <div class="example-list">Personal stories, your opinions and values, heartfelt messages, creative work you want to claim as your own, expressions of your identity</div>
+            </div>
+            <div class="options">
+                <div class="option-btn" onclick="showResult('avoid', 'Keep this purely your own expression.')">Yes</div>
+                <div class="option-btn" onclick="showResult('minimal', 'Use AI for inspiration or starting points, but ensure the final result genuinely reflects you.')">No</div>
+            </div>
+        </div>
+        
+        <div id="express-4" class="question-card hidden">
+            <h2 class="question">Are you trying to develop your creative abilities or communication skills?</h2>
+            <div class="examples">
+                <h4>Creative skill development:</h4>
+                <div class="example-list">Learning to write better, developing your artistic style, improving presentation skills, building confidence in self-expression, exploring your creative voice</div>
+            </div>
+            <div class="options">
+                <div class="option-btn" onclick="showResult('minimal', 'Practice is essential for creative growth. Use AI for feedback or ideas, but do the creative work yourself.')">Yes</div>
+                <div class="option-btn" onclick="goToSection('express-5')">No</div>
+            </div>
+        </div>
+        
+        <div id="express-5" class="question-card hidden">
+            <h2 class="question">Is this something others will see as coming from you personally?</h2>
+            <div class="examples">
+                <h4>Things attributed to you:</h4>
+                <div class="example-list">Work presentations, public communications, social media under your name, professional materials, anything with your signature or byline</div>
+            </div>
+            <div class="options">
+                <div class="option-btn" onclick="showResult('assistant', 'Use AI to help refine or enhance your ideas, but ensure it still represents your thinking.')">Yes</div>
+                <div class="option-btn" onclick="showResult('friendly', 'AI can help you create what you need efficiently.')">No</div>
+            </div>
+        </div>
+        
+        <!-- Results -->
+        <div id="result" class="hidden">
+            <div id="result-content" class="result-card">
+                <div class="result-title" id="result-title"></div>
+                <div class="result-description" id="result-description"></div>
+            </div>
+            <button class="restart-btn" onclick="restart()">Start Over</button>
+        </div>
+    </div>
+    
+    <script>
+        function goToSection(sectionId) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.question-card, #result');
+            sections.forEach(section => section.classList.add('hidden'));
+            
+            // Show the target section
+            const targetSection = document.getElementById(sectionId === 'task' ? 'task-1' : 
+                                                       sectionId === 'advice' ? 'advice-1' : 
+                                                       sectionId === 'learn' ? 'learn-1' : 
+                                                       sectionId === 'express' ? 'express-1' : sectionId);
+            if (targetSection) {
+                targetSection.classList.remove('hidden');
+            }
+        }
+        
+        function showResult(type, description) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.question-card');
+            sections.forEach(section => section.classList.add('hidden'));
+            
+            // Show result
+            const resultDiv = document.getElementById('result');
+            const resultContent = document.getElementById('result-content');
+            const titleDiv = document.getElementById('result-title');
+            const descriptionDiv = document.getElementById('result-description');
+            
+            // Set content based on result type
+            resultContent.className = `result-card ${type}`;
+            
+            switch(type) {
+                case 'avoid':
+                    titleDiv.textContent = '🚫 Avoid AI';
+                    break;
+                case 'minimal':
+                    titleDiv.textContent = '⚠️ Minimal AI';
+                    break;
+                case 'assistant':
+                    titleDiv.textContent = '🤝 AI as Assistant';
+                    break;
+                case 'friendly':
+                    titleDiv.textContent = '✅ AI Friendly';
+                    break;
+                case 'reconsider':
+                    titleDiv.textContent = '🔄 Reconsider';
+                    break;
+            }
+            
+            descriptionDiv.textContent = description;
+            resultDiv.classList.remove('hidden');
+        }
+        
+        function restart() {
+            // Hide all sections
+            const sections = document.querySelectorAll('.question-card, #result');
+            sections.forEach(section => section.classList.add('hidden'));
+            
+            // Show start section
+            document.getElementById('start').classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
