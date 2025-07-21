@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Usage Decision Tool</title>
+    <title></title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;600&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -11,290 +14,320 @@
             box-sizing: border-box;
         }
 
+        button, input, select, textarea {
+            font-family: inherit;
+        }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Source Code Pro', monospace;
+            background-color: #1e1e2e;
+            color: #cdd6f4;
             min-height: 100vh;
             padding: 20px;
+            line-height: 1.6;
         }
 
+        /* Layout Container */
         .container {
-            max-width: 800px;
+            max-width: 720px;
             margin: 0 auto;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
+            background-color: #181825;
+            border: 2px solid #313244;
             padding: 30px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
 
+        /* Header */
         .header {
             text-align: center;
             margin-bottom: 30px;
         }
-
         .header h1 {
-            color: #2d3748;
-            font-size: 2.5em;
-            font-weight: 700;
-            margin-bottom: 10px;
+            font-size: 1.8em;
+            color: #fab387;
+            text-shadow: 0 2px 4px rgba(250, 179, 135, 0.2);
         }
-
         .header p {
-            color: #4a5568;
-            font-size: 1.1em;
-            opacity: 0.8;
-        }
-
-        .loading {
-            text-align: center;
-            padding: 50px;
-            color: #4a5568;
-            font-size: 1.2em;
+            color: #6c7086;
+            font-size: 0.95em;
         }
 
         .error {
-            background: #fed7d7;
-            color: #c53030;
-            padding: 20px;
-            border-radius: 10px;
-            margin: 20px 0;
+            background-color: #3b2f2f;
+            color: #fab387;
+            padding: 15px;
+            border-left: 4px solid #fab387;
+            margin-bottom: 20px;
         }
 
+        /* Category Buttons */
         .category-selector {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            margin-bottom: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
         }
 
         .category-btn {
-            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-            color: white;
-            border: none;
+            background-color: #313244;
+            color: #cdd6f4;
+            border: 1px solid #585b70;
             padding: 20px;
-            border-radius: 15px;
-            font-size: 1em;
-            font-weight: 600;
+            border-radius: 8px;
             cursor: pointer;
+            font-size: 1em;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(79, 172, 254, 0.3);
+            text-align: left;
+            position: relative;
+            overflow: hidden;
         }
 
         .category-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(79, 172, 254, 0.4);
+            background-color: #2a2d3a;
+            border-color: #6c7086;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         }
 
+        .category-title {
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #9dc7e6;
+            margin-bottom: 6px;
+        }
+
+        .category-examples {
+            font-size: 0.85em;
+            color: #9399b2;
+            font-style: italic;
+            opacity: 0.8;
+        }
+
+        /* Question UI */
         .question-container {
             display: none;
-            animation: fadeIn 0.5s ease-in;
         }
-
         .question-container.active {
             display: block;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
         .question-card {
-            background: white;
-            border-radius: 15px;
+            background-color: #1e1e2e;
+            border: 2px solid #45475a;
             padding: 25px;
+            border-radius: 10px;
             margin-bottom: 20px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-            border-left: 4px solid #4facfe;
-        }
-
-        .question-number {
-            color: #4facfe;
-            font-weight: 700;
-            font-size: 0.9em;
-            margin-bottom: 10px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
         }
 
         .question-text {
             font-size: 1.3em;
             font-weight: 600;
-            color: #2d3748;
-            margin-bottom: 10px;
+            color: #bac2de; /* Changed from bright yellow to muted lavender */
+            margin-bottom: 12px;
         }
 
         .question-context {
-            color: #718096;
             font-size: 0.95em;
+            color: #a6adc8;
             margin-bottom: 20px;
-            font-style: italic;
         }
 
         .answer-options {
-            display: grid;
-            gap: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .answer-card {
+            background-color: #313244;
+            border: 1px solid #585b70;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .answer-card:hover {
+            border-color: #6c7086;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
         }
 
         .answer-btn {
-            background: #f7fafc;
-            border: 2px solid #e2e8f0;
-            padding: 15px 20px;
-            border-radius: 10px;
+            background: transparent;
+            color: #cdd6f4;
+            border: none;
+            padding: 16px;
             cursor: pointer;
-            transition: all 0.3s ease;
             text-align: left;
-            font-size: 1em;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 12px;
+            width: 100%;
+            transition: background-color 0.3s ease;
         }
 
         .answer-btn:hover {
-            background: #edf2f7;
-            border-color: #cbd5e0;
-            transform: translateX(5px);
+            background-color: rgba(108, 112, 134, 0.08);
         }
 
+        .answer-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .answer-brief {
+            font-weight: 600;
+            font-size: 1.05em;
+            color: #f2cdcd; /* Using catppuccin flamingo for better contrast */
+        }
+
+        .answer-detail {
+            font-weight: 400;
+            font-size: 0.9em;
+            color: #bac2de;
+            opacity: 0.9;
+        }
+
+        .answer-examples {
+            background-color: #1e1e2e;
+            padding: 12px;
+            border-top: 1px solid #45475a;
+            font-size: 0.85em;
+            color: #f2c4a0;
+            font-style: italic;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .answer-examples.expanded {
+            max-height: 150px;
+            padding: 12px;
+            border-top-color: #45475a;
+        }
+
+        .answer-examples.collapsed {
+            padding: 0 12px;
+        }
+
+        .toggle-examples {
+            background: none;
+            border: none;
+            color: #a6adc8; /* Changed from bright pink to muted purple-gray */
+            font-size: 0.8em;
+            cursor: pointer;
+            padding: 6px 8px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            font-weight: 600;
+        }
+
+        .toggle-examples:hover {
+            background-color: rgba(108, 112, 134, 0.12);
+            color: #bac2de;
+        }
+
+        /* Result View */
         .result-card {
-            background: white;
-            border-radius: 15px;
-            padding: 30px;
+            background-color: #1e1e2e;
+            border: 2px solid #45475a;
+            padding: 35px;
+            border-radius: 12px;
             text-align: center;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-            margin-top: 20px;
-        }
-
-        .result-icon {
-            font-size: 4em;
-            margin-bottom: 20px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
         }
 
         .result-title {
-            font-size: 1.8em;
-            font-weight: 700;
+            font-size: 1.6em;
             margin-bottom: 15px;
+            font-weight: 600;
         }
 
         .result-description {
             font-size: 1.1em;
-            line-height: 1.6;
-            color: #4a5568;
-            margin-bottom: 25px;
+            color: #bac2de;
+            line-height: 1.7;
         }
 
-        .avoid { border-left-color: #e53e3e; }
-        .avoid .result-icon { color: #e53e3e; }
-        .avoid .result-title { color: #e53e3e; }
+        /* Result Type Styles - toned down the pink */
+        .avoid .result-title { 
+            color: #cba6c8; /* Desaturated pink */
+            text-shadow: 0 1px 2px rgba(203, 166, 200, 0.3);
+        }
+        .avoid {
+            border-color: #6c7086;
+            box-shadow: 0 2px 6px rgba(203, 166, 200, 0.15);
+        }
 
-        .minimal { border-left-color: #d69e2e; }
-        .minimal .result-icon { color: #d69e2e; }
-        .minimal .result-title { color: #d69e2e; }
+        .minimal .result-title { 
+            color: #f2c4a0; 
+            text-shadow: 0 1px 2px rgba(242, 196, 160, 0.3);
+        }
+        .minimal {
+            border-color: #6c7086;
+            box-shadow: 0 2px 6px rgba(242, 196, 160, 0.15);
+        }
 
-        .assistant { border-left-color: #ed8936; }
-        .assistant .result-icon { color: #ed8936; }
-        .assistant .result-title { color: #ed8936; }
+        .assistant .result-title { 
+            color: #a6c4f0; 
+            text-shadow: 0 1px 2px rgba(166, 196, 240, 0.3);
+        }
+        .assistant {
+            border-color: #6c7086;
+            box-shadow: 0 2px 6px rgba(166, 196, 240, 0.15);
+        }
 
-        .efficient { border-left-color: #38a169; }
-        .efficient .result-icon { color: #38a169; }
-        .efficient .result-title { color: #38a169; }
+        .efficient .result-title { 
+            color: #bde5b1; 
+            text-shadow: 0 1px 2px rgba(189, 229, 177, 0.3);
+        }
+        .efficient {
+            border-color: #6c7086;
+            box-shadow: 0 2px 6px rgba(189, 229, 177, 0.15);
+        }
 
+        /* Buttons */
         .reset-btn, .back-btn {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border: none;
-            padding: 12px 25px;
-            border-radius: 25px;
-            font-weight: 600;
+            font-family: 'Source Code Pro', monospace; 
+            background-color: #313244;
+            color: #cdd6f4;
+            border: 1px solid #585b70;
+            padding: 12px 24px;
+            border-radius: 6px;
+            margin-top: 20px;
             cursor: pointer;
-            margin: 10px;
+            font-weight: 600;
             transition: all 0.3s ease;
         }
 
         .reset-btn:hover, .back-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.3);
-        }
-
-        .progress-bar {
-            width: 100%;
-            height: 4px;
-            background: #e2e8f0;
-            border-radius: 2px;
-            margin-bottom: 30px;
-            overflow: hidden;
-        }
-
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #4facfe, #00f2fe);
-            transition: width 0.3s ease;
-            border-radius: 2px;
-        }
-
-        .category-title {
-            text-align: center;
-            margin-bottom: 25px;
-            color: #2d3748;
-            font-size: 1.8em;
-            font-weight: 600;
-        }
-
-        .file-upload {
-            background: white;
-            border: 2px dashed #cbd5e0;
-            border-radius: 15px;
-            padding: 30px;
-            text-align: center;
-            margin-bottom: 20px;
-            transition: all 0.3s ease;
-        }
-
-        .file-upload:hover {
-            border-color: #4facfe;
-            background: #f0f9ff;
-        }
-
-        .file-upload input {
-            display: none;
-        }
-
-        .file-upload label {
-            cursor: pointer;
-            color: #4a5568;
-            font-size: 1.1em;
-        }
-
-        .file-upload.has-file {
-            border-color: #38a169;
-            background: #f0fff4;
+            background-color: #2a2d3a;
+            border-color: #6c7086;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <h1>🤔 AI Usage Decision Tool</h1>
-            <p>Make thoughtful decisions about when and how to use AI</p>
+            <h1 id="pageTitle"></h1>
+            <p id="pageDescription"></p>
         </div>
-
-        <div id="loadingIndicator" class="loading" style="display: none;">
-            Loading decision tree...
-        </div>
-
-        <div id="errorMessage" class="error" style="display: none;"></div>
 
         <div id="categorySelection" style="display: none;">
             <div class="category-selector" id="categoryButtons"></div>
         </div>
 
         <div id="questionFlow" class="question-container">
-            <div class="progress-bar">
-                <div class="progress-fill" id="progressBar"></div>
-            </div>
-            <div id="categoryTitle" class="category-title"></div>
+            <div id="categoryTitle" class="category-title" style="margin-bottom: 1em; font-size: 1.2em; color: #9dc7e6;"></div>
             <div id="questionCard" class="question-card"></div>
             <button class="back-btn" onclick="goBack()" id="backButton" style="display: none;">← Back</button>
         </div>
 
         <div id="resultCard" class="result-card" style="display: none;">
-            <div class="result-icon" id="resultIcon"></div>
             <div class="result-title" id="resultTitle"></div>
             <div class="result-description" id="resultDescription"></div>
             <button class="reset-btn" onclick="resetTool()">Start Over</button>
@@ -307,31 +340,24 @@
         let currentCategory = '';
         let currentQuestion = '';
         let questionPath = [];
-        let totalQuestions = 0;
-        let currentStep = 0;
 
         function showError(message) {
-            document.getElementById('errorMessage').textContent = message;
-            document.getElementById('errorMessage').style.display = 'block';
-            document.getElementById('loadingIndicator').style.display = 'none';
-        }
-
-        function hideError() {
-            document.getElementById('errorMessage').style.display = 'none';
-        }
-
-        function showLoading() {
-            document.getElementById('loadingIndicator').style.display = 'block';
-            hideError();
-        }
-
-        function hideLoading() {
-            document.getElementById('loadingIndicator').style.display = 'none';
+            const container = document.querySelector('.container');
+            const existingError = document.getElementById('errorMessage');
+            
+            if (existingError) {
+                existingError.remove();
+            }
+            
+            const errorDiv = document.createElement('div');
+            errorDiv.id = 'errorMessage';
+            errorDiv.className = 'error';
+            errorDiv.textContent = message;
+            container.insertBefore(errorDiv, container.firstChild);
         }
 
         async function loadYamlFromFile(filePath) {
             try {
-                showLoading();
                 const response = await fetch(filePath);
                 
                 if (!response.ok) {
@@ -346,7 +372,6 @@
                 showError(`Could not load ${filePath}. Please upload a YAML file manually.`);
             }
         }
-
 
         function parseYamlData(yamlText) {
             try {
@@ -365,10 +390,10 @@
         function processDecisionTree(data) {
             flowCharts = {};
             
-            // Convert YAML structure to the format expected by the UI
             for (const [categoryKey, categoryData] of Object.entries(data.categories)) {
                 flowCharts[categoryKey] = {
                     title: categoryData.title,
+                    examples: categoryData.examples,
                     questions: {}
                 };
 
@@ -376,25 +401,28 @@
                     flowCharts[categoryKey].questions[questionKey] = {
                         text: questionData.text,
                         context: questionData.context,
-                        answers: questionData.answers.map(answer => ({
-                            text: answer.text,
-                            result: answer.result || undefined,
-                            resultText: answer.result_text || undefined,
-                            next: answer.next || undefined
-                        }))
+                        answers: questionData.answers.map(answer => {
+                            return {
+                                brief: answer.brief,
+                                detail: answer.detail || undefined,
+                                examples: answer.examples || undefined,
+                                result: answer.result || undefined,
+                                resultText: answer.result_text || undefined,
+                                next: answer.next || undefined
+                            };
+                        })
                     };
                 }
             }
 
-            // Store result types for reference
             window.resultTypes = data.result_types;
             
-            // Update page title if provided
             if (data.metadata && data.metadata.title) {
-                document.querySelector('.header h1').textContent = `🤔 ${data.metadata.title}`;
+                document.getElementById('pageTitle').textContent = data.metadata.title;
+                document.title = data.metadata.title;
             }
             if (data.metadata && data.metadata.description) {
-                document.querySelector('.header p').textContent = data.metadata.description;
+                document.getElementById('pageDescription').textContent = data.metadata.description;
             }
         }
 
@@ -405,7 +433,10 @@
             for (const [categoryKey, categoryData] of Object.entries(flowCharts)) {
                 const button = document.createElement('button');
                 button.className = 'category-btn';
-                button.textContent = categoryData.title;
+                button.innerHTML = `
+                    <div class="category-title">${categoryData.title}</div>
+                    ${categoryData.examples ? `<div class="category-examples">${categoryData.examples}</div>` : ''}
+                `;
                 button.onclick = () => startCategory(categoryKey);
                 categoryButtons.appendChild(button);
             }
@@ -413,51 +444,48 @@
 
         function loadDecisionTree(yamlText) {
             try {
-                showLoading();
                 const data = parseYamlData(yamlText);
                 processDecisionTree(data);
                 createCategoryButtons();
                 
                 document.getElementById('categorySelection').style.display = 'block';
                 
-                hideLoading();
             } catch (error) {
                 showError(error.message);
             }
         }
 
-        function handleFileUpload(event) {
-            const file = event.target.files[0];
-            if (!file) return;
-
-            if (!file.name.match(/\.(yml|yaml)$/i)) {
-                showError('Please select a YAML (.yml or .yaml) file');
-                return;
-            }
-
-            const reader = new FileReader();
-            reader.onload = (e) => {
-                loadDecisionTree(e.target.result);
-            };
-            reader.onerror = () => {
-                showError('Failed to read file');
-            };
-            reader.readAsText(file);
+        function updateBackButtonVisibility() {
+            const backButton = document.getElementById('backButton');
+            backButton.style.display = questionPath.length > 0 ? 'inline-block' : 'none';
         }
 
         function startCategory(category) {
             currentCategory = category;
             currentQuestion = Object.keys(flowCharts[category].questions)[0];
-            questionPath = [currentQuestion];
-            totalQuestions = Object.keys(flowCharts[category].questions).length;
-            currentStep = 1;
+            questionPath = ['category', currentQuestion];
             
             document.getElementById('categorySelection').style.display = 'none';
             document.getElementById('questionFlow').style.display = 'block';
             document.getElementById('categoryTitle').textContent = flowCharts[category].title;
             
-            updateProgress();
             displayQuestion();
+            updateBackButtonVisibility();
+        }
+
+        function toggleExamples(button, examplesId) {
+            const examples = document.getElementById(examplesId);
+            const isExpanded = examples.classList.contains('expanded');
+            
+            if (isExpanded) {
+                examples.classList.remove('expanded');
+                examples.classList.add('collapsed');
+                button.textContent = 'show examples';
+            } else {
+                examples.classList.remove('collapsed');
+                examples.classList.add('expanded');
+                button.textContent = 'hide examples';
+            }
         }
 
         function displayQuestion() {
@@ -466,17 +494,30 @@
             
             let answersHtml = '';
             question.answers.forEach((answer, index) => {
-                answersHtml += `<button class="answer-btn" onclick="handleAnswer(${index})">${answer.text}</button>`;
+                const hasExamples = answer.examples;
+                const examplesId = `examples-${index}`;
+                
+                answersHtml += `
+                    <div class="answer-card">
+                        <button class="answer-btn" onclick="handleAnswer(${index})">
+                            <div class="answer-content">
+                                <div class="answer-brief">${answer.brief}</div>
+                                ${answer.detail ? `<div class="answer-detail">${answer.detail}</div>` : ''}
+                            </div>
+                            ${hasExamples ? `<button class="toggle-examples" onclick="event.stopPropagation(); toggleExamples(this, '${examplesId}')">show examples</button>` : ''}
+                        </button>
+                        ${hasExamples ? `<div id="${examplesId}" class="answer-examples collapsed">e.g. ${answer.examples}</div>` : ''}
+                    </div>
+                `;
             });
 
             questionCard.innerHTML = `
-                <div class="question-number">Question ${currentQuestion}</div>
                 <div class="question-text">${question.text}</div>
                 <div class="question-context">${question.context}</div>
                 <div class="answer-options">${answersHtml}</div>
             `;
 
-            document.getElementById('backButton').style.display = questionPath.length > 1 ? 'inline-block' : 'none';
+            updateBackButtonVisibility();
         }
 
         function handleAnswer(answerIndex) {
@@ -488,43 +529,34 @@
             } else if (answer.next) {
                 currentQuestion = answer.next;
                 questionPath.push(currentQuestion);
-                currentStep++;
-                updateProgress();
                 displayQuestion();
+                updateBackButtonVisibility();
             }
         }
 
         function showResult(resultType, resultText) {
             const resultCard = document.getElementById('resultCard');
-            const resultIcon = document.getElementById('resultIcon');
             const resultTitle = document.getElementById('resultTitle');
             const resultDescription = document.getElementById('resultDescription');
 
             resultCard.className = `result-card ${resultType}`;
             
-            // Use result types from YAML if available, fall back to defaults
             const resultTypeData = window.resultTypes && window.resultTypes[resultType];
             if (resultTypeData) {
-                resultIcon.textContent = resultTypeData.icon;
                 resultTitle.textContent = resultTypeData.title;
             } else {
-                // Fallback for backwards compatibility
                 switch(resultType) {
                     case 'avoid':
-                        resultIcon.textContent = '⛔';
-                        resultTitle.textContent = 'AVOID AI';
+                        resultTitle.textContent = 'Avoid AI';
                         break;
                     case 'minimal':
-                        resultIcon.textContent = '🟡';
-                        resultTitle.textContent = 'MINIMAL AI';
+                        resultTitle.textContent = 'Minimal AI';
                         break;
                     case 'assistant':
-                        resultIcon.textContent = '🟠';
-                        resultTitle.textContent = 'AI ASSISTANT';
+                        resultTitle.textContent = 'AI Assistant';
                         break;
                     case 'efficient':
-                        resultIcon.textContent = '✅';
-                        resultTitle.textContent = 'AI EFFICIENT';
+                        resultTitle.textContent = 'AI Efficient';
                         break;
                 }
             }
@@ -538,10 +570,19 @@
         function goBack() {
             if (questionPath.length > 1) {
                 questionPath.pop();
-                currentQuestion = questionPath[questionPath.length - 1];
-                currentStep--;
-                updateProgress();
-                displayQuestion();
+                const previousStep = questionPath[questionPath.length - 1];
+                
+                if (previousStep === 'category') {
+                    document.getElementById('questionFlow').style.display = 'none';
+                    document.getElementById('categorySelection').style.display = 'block';
+                    questionPath = [];
+                    currentCategory = '';
+                    currentQuestion = '';
+                } else {
+                    currentQuestion = previousStep;
+                    displayQuestion();
+                }
+                updateBackButtonVisibility();
             }
         }
 
@@ -553,18 +594,9 @@
             currentCategory = '';
             currentQuestion = '';
             questionPath = [];
-            totalQuestions = 0;
-            currentStep = 0;
         }
 
-        function updateProgress() {
-            const progress = (currentStep / totalQuestions) * 100;
-            document.getElementById('progressBar').style.width = progress + '%';
-        }
-
-        // Initialize with default decision tree
         document.addEventListener('DOMContentLoaded', function() {
-            // Try to load from ./decision-tree.yml first
             loadYamlFromFile('./decision-tree.yml');
         });
     </script>
