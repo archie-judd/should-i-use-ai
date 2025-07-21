@@ -1,0 +1,138 @@
+categories:
+  task:
+    title: "🛠️ Task Completion"
+    questions:
+      "1.1":
+        text: "Is this task CRITICAL?"
+        context: "Sensitive/ethical? High-stakes? Legal/financial/medical? Irreversible consequences? Unverifiable?"
+        answers:
+          - text: "Yes - This involves sensitive, high-stakes, legal, financial, medical issues or has irreversible consequences"
+            result: "avoid"
+            result_text: "Use experts or manual methods instead of AI"
+          - text: "No - This is not critical"
+            next: "1.2"
+      "1.2":
+        text: "Is this TIME-SENSITIVE?"
+        context: "Do you have an urgent deadline?"
+        answers:
+          - text: "Yes - I have an urgent deadline"
+            next: "1.4"
+          - text: "No - I have adequate time"
+            next: "1.3"
+      "1.3":
+        text: "Can you VERIFY AI OUTPUT?"
+        context: "Do you have the knowledge or tools to check accuracy?"
+        answers:
+          - text: "No - I cannot verify the accuracy"
+            result: "avoid"
+            result_text: "Learn manually first so you can verify AI output safely"
+          - text: "Yes - I can check the accuracy"
+            next: "1.4"
+      "1.4":
+        text: "Is this REPETITIVE/TIME-CONSUMING?"
+        context: "Data entry, formatting, bulk processing, etc.?"
+        answers:
+          - text: "Yes - This involves repetitive or time-consuming work"
+            next: "1.5"
+          - text: "No - This is not repetitive work"
+            next: "1.6"
+      "1.5":
+        text: "Is there a SKILL ATROPHY RISK?"
+        context: "Will AI use prevent you from maintaining important abilities?"
+        answers:
+          - text: "Yes - I might lose important skills if I use AI"
+            result: "minimal"
+            result_text: "Use AI minimally - rotate between AI and manual methods to maintain your skills"
+          - text: "No - No risk of losing important skills"
+            result: "efficient"
+            result_text: "AI is efficient here - delegate strategically and verify results"
+      "1.6":
+        text: "What is the LEARNING OPPORTUNITY VALUE?"
+        context: "Is understanding this process important for your goals?"
+        answers:
+          - text: "High value + I have time available"
+            result: "avoid"
+            result_text: "Practice manually - this builds competence you need"
+          - text: "High value + Time pressure"
+            result: "assistant"
+            result_text: "Use AI as assistant - learn alongside it and explain the process back"
+          - text: "Low value for my goals"
+            result: "efficient"
+            result_text: "AI is efficient - focus your effort elsewhere and verify results"
+
+  advice:
+    title: "💬 Advice/Feedback"
+    questions:
+      "2.1":
+        text: "Is this advice request CRITICAL?"
+        context: "Emotional/interpersonal? Life-altering? Involves vulnerable individuals?"
+        answers:
+          - text: "Yes - This involves emotions, relationships, life-altering decisions, or vulnerable people"
+            result: "minimal"
+            result_text: "Use minimal AI - consult humans primarily, use AI only for frameworks"
+          - text: "No - This is not a critical advice situation"
+            next: "2.2"
+      "2.2":
+        text: "Are you DEVELOPING JUDGMENT in this area?"
+        context: "Are you building decision-making skills here?"
+        answers:
+          - text: "Yes - I'm trying to build my judgment skills"
+            result: "avoid"
+            result_text: "Avoid AI - practice reasoning independently to develop judgment"
+          - text: "No - I'm not focused on developing judgment here"
+            next: "2.3"
+      "2.3":
+        text: "Are you WORKING WITH OTHERS?"
+        context: "Is this a team decision or does it affect relationships?"
+        answers:
+          - text: "Yes - This is a team decision or affects relationships"
+            result: "minimal"
+            result_text: "Use minimal AI - prioritize human consultation, use AI only for structure"
+          - text: "No - This is an individual decision"
+            next: "2.4"
+      "2.4":
+        text: "Is this VALUES-DEPENDENT?"
+        context: "Rooted in personal ethics, relationships, or cultural context?"
+        answers:
+          - text: "Yes - This depends heavily on my personal values"
+            result: "minimal"
+            result_text: "Use AI minimally - as a thinking tool only, but you make the decisions"
+          - text: "No - Not particularly values-dependent"
+            next: "2.5"
+      "2.5":
+        text: "What TYPE OF INPUT are you seeking?"
+        context: "What kind of help do you need?"
+        answers:
+          - text: "Multiple perspectives on the situation"
+            result: "assistant"
+            result_text: "Use AI as assistant - generate options, but you evaluate and choose"
+          - text: "A direct answer to my question"
+            result: "avoid"
+            result_text: "Avoid AI - develop your own reasoning skills instead"
+          - text: "Framework or structure for thinking"
+            result: "assistant"
+            result_text: "Use AI as assistant - organize your thinking, add >50% your own analysis"
+
+result_types:
+  avoid:
+    icon: "⛔"
+    title: "AVOID AI"
+    description: "Use traditional methods, human expertise, or manual processes"
+  minimal:
+    icon: "🟡"
+    title: "MINIMAL AI"
+    description: "Limited AI assistance with strong human oversight and control"
+  assistant:
+    icon: "🟠"
+    title: "AI ASSISTANT"
+    description: "Collaborative AI use with significant human contribution and judgment"
+  efficient:
+    icon: "✅"
+    title: "AI EFFICIENT"
+    description: "Strategic AI delegation with appropriate verification"
+
+metadata:
+  title: "AI Usage Decision Tool"
+  description: "Make thoughtful decisions about when and how to use AI"
+  version: "1.0"
+
