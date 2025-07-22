@@ -35,7 +35,6 @@
             border: 2px solid #313244;
             padding: 30px;
             border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
 
         /* Header */
@@ -46,7 +45,6 @@
         .header h1 {
             font-size: 1.8em;
             color: #fab387;
-            text-shadow: 0 2px 4px rgba(250, 179, 135, 0.2);
         }
         .header p {
             color: #6c7086;
@@ -85,7 +83,6 @@
         .category-btn:hover {
             background-color: #2a2d3a;
             border-color: #6c7086;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         }
 
         .category-title {
@@ -116,13 +113,12 @@
             padding: 25px;
             border-radius: 10px;
             margin-bottom: 20px;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
         }
 
         .question-text {
             font-size: 1.3em;
             font-weight: 600;
-            color: #bac2de; /* Changed from bright yellow to muted lavender */
+            color: #eba0ac;
             margin-bottom: 12px;
         }
 
@@ -148,7 +144,6 @@
 
         .answer-card:hover {
             border-color: #6c7086;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
         }
 
         .answer-btn {
@@ -179,13 +174,13 @@
 
         .answer-brief {
             font-weight: 600;
-            font-size: 1.05em;
-            color: #f2cdcd; /* Using catppuccin flamingo for better contrast */
+            font-size: 1.5em;
+            color: #f5e0dc;
         }
 
         .answer-detail {
             font-weight: 400;
-            font-size: 0.9em;
+            font-size: 1.15em;
             color: #bac2de;
             opacity: 0.9;
         }
@@ -237,7 +232,6 @@
             padding: 35px;
             border-radius: 12px;
             text-align: center;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
         }
 
         .result-title {
@@ -255,38 +249,30 @@
         /* Result Type Styles - toned down the pink */
         .avoid .result-title { 
             color: #cba6c8; /* Desaturated pink */
-            text-shadow: 0 1px 2px rgba(203, 166, 200, 0.3);
         }
         .avoid {
             border-color: #6c7086;
-            box-shadow: 0 2px 6px rgba(203, 166, 200, 0.15);
         }
 
         .minimal .result-title { 
             color: #f2c4a0; 
-            text-shadow: 0 1px 2px rgba(242, 196, 160, 0.3);
         }
         .minimal {
             border-color: #6c7086;
-            box-shadow: 0 2px 6px rgba(242, 196, 160, 0.15);
         }
 
         .assistant .result-title { 
             color: #a6c4f0; 
-            text-shadow: 0 1px 2px rgba(166, 196, 240, 0.3);
         }
         .assistant {
             border-color: #6c7086;
-            box-shadow: 0 2px 6px rgba(166, 196, 240, 0.15);
         }
 
         .efficient .result-title { 
             color: #bde5b1; 
-            text-shadow: 0 1px 2px rgba(189, 229, 177, 0.3);
         }
         .efficient {
             border-color: #6c7086;
-            box-shadow: 0 2px 6px rgba(189, 229, 177, 0.15);
         }
 
         /* Buttons */
@@ -306,7 +292,6 @@
         .reset-btn:hover, .back-btn:hover {
             background-color: #2a2d3a;
             border-color: #6c7086;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         }
     </style>
 </head>
@@ -327,11 +312,13 @@
             <button class="back-btn" onclick="goBack()" id="backButton" style="display: none;">← Back</button>
         </div>
 
-        <div id="resultCard" class="result-card" style="display: none;">
-            <div class="result-title" id="resultTitle"></div>
-            <div class="result-description" id="resultDescription"></div>
-            <button class="reset-btn" onclick="resetTool()">Start Over</button>
-        </div>
+	<div id="resultCard" class="result-card" style="display: none;">
+	    <div class="result-title" id="resultTitle"></div>
+	    <div class="result-description" id="resultDescription"></div>
+	    <button class="reset-btn" onclick="resetTool()">Start Over</button>
+	</div>
+	<button class="back-btn" onclick="goBackFromResult()" id="backFromResultButton" style="display: none;">← Back</button>
+
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js"></script>
@@ -565,26 +552,38 @@
             
             document.getElementById('questionFlow').style.display = 'none';
             resultCard.style.display = 'block';
+            document.getElementById('backFromResultButton').style.display = 'inline-block';
         }
 
-        function goBack() {
-            if (questionPath.length > 1) {
-                questionPath.pop();
-                const previousStep = questionPath[questionPath.length - 1];
-                
-                if (previousStep === 'category') {
-                    document.getElementById('questionFlow').style.display = 'none';
-                    document.getElementById('categorySelection').style.display = 'block';
-                    questionPath = [];
-                    currentCategory = '';
-                    currentQuestion = '';
-                } else {
-                    currentQuestion = previousStep;
-                    displayQuestion();
-                }
-                updateBackButtonVisibility();
-            }
-        }
+	function goBackFromResult() {
+	    // Hide result view
+	    document.getElementById('resultCard').style.display = 'none';
+	    document.getElementById('backFromResultButton').style.display = 'none';
+
+	    // Go back to the last question
+	    currentQuestion = questionPath[questionPath.length - 1];
+	    document.getElementById('questionFlow').style.display = 'block';
+	    displayQuestion();
+	}
+
+	function goBack() {
+	    if (questionPath.length > 1) {
+		questionPath.pop();
+		const previousStep = questionPath[questionPath.length - 1];
+		
+		if (previousStep === 'category') {
+		    document.getElementById('questionFlow').style.display = 'none';
+		    document.getElementById('categorySelection').style.display = 'block';
+		    questionPath = [];
+		    currentCategory = '';
+		    currentQuestion = '';
+		} else {
+		    currentQuestion = previousStep;
+		    displayQuestion();
+		}
+		updateBackButtonVisibility();
+	    }
+	}
 
         function resetTool() {
             document.getElementById('categorySelection').style.display = 'block';
