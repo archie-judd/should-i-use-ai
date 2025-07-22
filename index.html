@@ -198,9 +198,13 @@
         }
 
         .answer-examples.expanded {
-            max-height: 150px;
-            padding: 12px;
+            max-height: none;
+            padding: 12px 12px 0 12px;
             border-top-color: #45475a;
+        }
+        
+        .answer-examples ul {
+            padding-bottom: 12px; /* puts the space where it belongs */
         }
 
         .answer-examples.collapsed {
@@ -234,79 +238,84 @@
 	    display: block;
 	}
 
-        .result-card {
-            background-color: #1e1e2e;
-            border: 2px solid #45475a;
-            padding: 35px;
-            border-radius: 12px;
-            text-align: center;
-        }
+    .result-card {
+        background-color: #1e1e2e;
+        border: 2px solid #45475a;
+        padding: 35px;
+        border-radius: 12px;
+        text-align: center;
+    }
 
-        .result-title {
-            font-size: 1.6em;
-            margin-bottom: 15px;
-            font-weight: 600;
-        }
+    .result-title {
+        font-size: 1.6em;
+        margin-bottom: 15px;
+        font-weight: 600;
+    }
 
-        .result-description {
-            font-size: 1.1em;
-            color: #bac2de;
-            line-height: 1.7;
-        }
+    .result-description {
+        font-size: 1.1em;
+        color: #bac2de;
+        line-height: 1.7;
+    }
 
-        /* Result Type Styles - toned down the pink */
-        .avoid .result-title { 
-            color: #cba6c8; /* Desaturated pink */
-        }
-        .avoid {
-            border-color: #6c7086;
-        }
+    /* Result Type Styles - toned down the pink */
+    .avoid .result-title { 
+        color: #cba6c8; /* Desaturated pink */
+    }
+    .avoid {
+        border-color: #6c7086;
+    }
 
-        .minimal .result-title { 
-            color: #f2c4a0; 
-        }
-        .minimal {
-            border-color: #6c7086;
-        }
+    .minimal .result-title { 
+        color: #f2c4a0; 
+    }
+    .minimal {
+        border-color: #6c7086;
+    }
 
-        .assistant .result-title { 
-            color: #a6c4f0; 
-        }
-        .assistant {
-            border-color: #6c7086;
-        }
+    .assistant .result-title { 
+        color: #a6c4f0; 
+    }
+    .assistant {
+        border-color: #6c7086;
+    }
 
-        .efficient .result-title { 
-            color: #bde5b1; 
-        }
-        .efficient {
-            border-color: #6c7086;
-        }
+    .efficient .result-title { 
+        color: #bde5b1; 
+    }
+    .efficient {
+        border-color: #6c7086;
+    }
 
-        /* Buttons */
-        .reset-btn, .back-btn {
-            font-family: 'Source Code Pro', monospace; 
-            background-color: #313244;
-            color: #cdd6f4;
-            border: 1px solid #585b70;
-            padding: 12px 24px;
-            border-radius: 6px;
-            margin-top: 20px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
+    /* Buttons */
+    .reset-btn, .back-btn {
+        font-family: 'Source Code Pro', monospace; 
+        background-color: #313244;
+        color: #cdd6f4;
+        border: 1px solid #585b70;
+        padding: 12px 24px;
+        border-radius: 6px;
+        margin-top: 20px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: all 0.3s ease;
+	    font-size: 1.2em; /* Adjust size as needed */
+	    vertical-align: middle;
+    }
 
-        .reset-btn:hover, .back-btn:hover {
-            background-color: #2a2d3a;
-            border-color: #6c7086;
-        }
+    .reset-btn:hover, .back-btn:hover {
+        background-color: #2a2d3a;
+        border-color: #6c7086;
+    }
 
-	.btn-icon {
-	  font-size: 1.5em; /* Adjust size as needed */
-	  vertical-align: middle;
-	  margin-right: 6px; /* spacing between icon and text */
-	}
+    .dash-list {
+    list-style-type: none;
+    }
+
+    .dash-list li::before {
+        content: "— ";
+        margin-right: 0.5em;
+    }
     </style>
 </head>
 <body>
@@ -324,10 +333,10 @@
             <div id="categoryTitle" class="category-title" style="margin-bottom: 1em; font-size: 1.2em; color: #9dc7e6;"></div>
             <div id="questionCard" class="question-card"></div>
 		<button aria-label="Go Back" class="back-btn" id="questionBackButton" onclick="goBack()">
-		    <span class="btn-icon">←</span> <span class="btn-text">Back</span>
+		    <span class="btn-text">← Back</span>
 		</button>
 		<button aria-label="Start Over" class="reset-btn" id="questionResetButton" onclick="resetTool()">
-		  <span class="btn-icon">⟳</span> <span class="btn-text">Start Again</span>
+		   <span class="btn-text">⟳ Start Again</span>
 		</button>
         </div>
 
@@ -337,10 +346,10 @@
 		<div class="result-description" id="resultDescription"></div>
 	    </div>
 	<button aria-label="Go Back" class="back-btn" id="resultBackButton" onclick="goBackFromResult()">
-	    <span class="btn-icon">←</span> <span class="btn-text">Back</span>
+		<span class="btn-text">← Back</span>
 	</button>
 	<button aria-label="Start Over" class="reset-btn" id="resultResetButton" onclick="resetTool()">
-	  <span class="btn-icon">⟳</span> <span class="btn-text">Start Again</span>
+        <span class="btn-text">⟳ Start Again</span>
 	</button>
 	</div>
     </div>
@@ -485,113 +494,117 @@
 	}
 
 
-        function startCategory(category) {
-            currentCategory = category;
-            currentQuestion = Object.keys(flowCharts[category].questions)[0];
-            questionPath = ['category', currentQuestion];
-            
-            document.getElementById('categorySelection').style.display = 'none';
-            document.getElementById('questionSection').style.display = 'block';
-            document.getElementById('categoryTitle').textContent = flowCharts[category].title;
-            
-            displayQuestion();
-            updateQuestionButtonsVisibility();
+    function startCategory(category) {
+        currentCategory = category;
+        currentQuestion = Object.keys(flowCharts[category].questions)[0];
+        questionPath = ['category', currentQuestion];
+        
+        document.getElementById('categorySelection').style.display = 'none';
+        document.getElementById('questionSection').style.display = 'block';
+        document.getElementById('categoryTitle').textContent = flowCharts[category].title;
+        
+        displayQuestion();
+        updateQuestionButtonsVisibility();
+    }
+
+    function toggleExamples(button, examplesId) {
+        const examples = document.getElementById(examplesId);
+        const isExpanded = examples.classList.contains('expanded');
+        
+        if (isExpanded) {
+            examples.classList.remove('expanded');
+            examples.classList.add('collapsed');
+            button.textContent = 'show examples';
+        } else {
+            examples.classList.remove('collapsed');
+            examples.classList.add('expanded');
+            button.textContent = 'hide examples';
         }
+    }
 
-        function toggleExamples(button, examplesId) {
-            const examples = document.getElementById(examplesId);
-            const isExpanded = examples.classList.contains('expanded');
+    function displayQuestion() {
+        const question = flowCharts[currentCategory].questions[currentQuestion];
+        const questionCard = document.getElementById('questionCard');
+        
+        let answersHtml = '';
+        question.answers.forEach((answer, index) => {
+            const hasExamples = answer.examples;
+            const examplesId = `examples-${index}`;
             
-            if (isExpanded) {
-                examples.classList.remove('expanded');
-                examples.classList.add('collapsed');
-                button.textContent = 'show examples';
-            } else {
-                examples.classList.remove('collapsed');
-                examples.classList.add('expanded');
-                button.textContent = 'hide examples';
-            }
-        }
-
-        function displayQuestion() {
-            const question = flowCharts[currentCategory].questions[currentQuestion];
-            const questionCard = document.getElementById('questionCard');
-            
-            let answersHtml = '';
-            question.answers.forEach((answer, index) => {
-                const hasExamples = answer.examples;
-                const examplesId = `examples-${index}`;
-                
-                answersHtml += `
-                    <div class="answer-card">
-                        <button class="answer-btn" onclick="handleAnswer(${index})">
-                            <div class="answer-content">
-                                <div class="answer-brief">${answer.brief}</div>
-                                ${answer.detail ? `<div class="answer-detail">${answer.detail}</div>` : ''}
-                            </div>
-                            ${hasExamples ? `<button class="toggle-examples" onclick="event.stopPropagation(); toggleExamples(this, '${examplesId}')">show examples</button>` : ''}
-                        </button>
-                        ${hasExamples ? `<div id="${examplesId}" class="answer-examples collapsed">e.g. ${answer.examples}</div>` : ''}
-                    </div>
-                `;
-            });
-
-            questionCard.innerHTML = `
-                <div class="question-text">${question.text}</div>
-                <div class="question-context">${question.context}</div>
-                <div class="answer-options">${answersHtml}</div>
+            answersHtml += `
+                <div class="answer-card">
+                    <button class="answer-btn" onclick="handleAnswer(${index})">
+                        <div class="answer-content">
+                            <div class="answer-brief">${answer.brief}</div>
+                            ${answer.detail ? `<div class="answer-detail">${answer.detail}</div>` : ''}
+                        </div>
+                        ${hasExamples ? `<button class="toggle-examples" onclick="event.stopPropagation(); toggleExamples(this, '${examplesId}')">show examples</button>` : ''}
+                    </button>
+                    ${hasExamples ? `<div id="${examplesId}" class="answer-examples collapsed"> e.g.<br>
+            <ul class="dash-list" style="padding-left: 1.2em; margin-top: 0.5em;">
+                ${answer.examples.map(ex => `<li>${ex}</li>`).join('')}
+            </ul>
+        </div>` : ''}
+                </div>
             `;
+        });
 
-	    document.getElementById('questionResetButton').style.display = 'inline-block';
-            updateQuestionButtonsVisibility();
+        questionCard.innerHTML = `
+            <div class="question-text">${question.text}</div>
+            <div class="question-context">${question.context}</div>
+            <div class="answer-options">${answersHtml}</div>
+        `;
+
+    document.getElementById('questionResetButton').style.display = 'inline-block';
+        updateQuestionButtonsVisibility();
+    }
+
+    function handleAnswer(answerIndex) {
+        const question = flowCharts[currentCategory].questions[currentQuestion];
+        const answer = question.answers[answerIndex];
+        
+        if (answer.result) {
+            displayResult(answer.result, answer.resultText);
+        } else if (answer.next) {
+            currentQuestion = answer.next;
+            questionPath.push(currentQuestion);
+            displayQuestion();
         }
+    }
 
-        function handleAnswer(answerIndex) {
-            const question = flowCharts[currentCategory].questions[currentQuestion];
-            const answer = question.answers[answerIndex];
-            
-            if (answer.result) {
-                displayResult(answer.result, answer.resultText);
-            } else if (answer.next) {
-                currentQuestion = answer.next;
-                questionPath.push(currentQuestion);
-                displayQuestion();
+    function displayResult(resultType, resultText) {
+        const resultCard = document.getElementById('resultCard');
+        const resultTitle = document.getElementById('resultTitle');
+        const resultDescription = document.getElementById('resultDescription');
+
+        resultCard.className = `result-card ${resultType}`;
+        
+        const resultTypeData = window.resultTypes && window.resultTypes[resultType];
+        if (resultTypeData) {
+            resultTitle.textContent = resultTypeData.title;
+        } else {
+            switch(resultType) {
+                case 'avoid':
+                    resultTitle.textContent = 'Avoid AI';
+                    break;
+                case 'minimal':
+                    resultTitle.textContent = 'Minimal AI';
+                    break;
+                case 'assistant':
+                    resultTitle.textContent = 'AI Assistant';
+                    break;
+                case 'efficient':
+                    resultTitle.textContent = 'AI Efficient';
+                    break;
             }
         }
-
-        function displayResult(resultType, resultText) {
-            const resultCard = document.getElementById('resultCard');
-            const resultTitle = document.getElementById('resultTitle');
-            const resultDescription = document.getElementById('resultDescription');
-
-            resultCard.className = `result-card ${resultType}`;
-            
-            const resultTypeData = window.resultTypes && window.resultTypes[resultType];
-            if (resultTypeData) {
-                resultTitle.textContent = resultTypeData.title;
-            } else {
-                switch(resultType) {
-                    case 'avoid':
-                        resultTitle.textContent = 'Avoid AI';
-                        break;
-                    case 'minimal':
-                        resultTitle.textContent = 'Minimal AI';
-                        break;
-                    case 'assistant':
-                        resultTitle.textContent = 'AI Assistant';
-                        break;
-                    case 'efficient':
-                        resultTitle.textContent = 'AI Efficient';
-                        break;
-                }
-            }
-            
-            resultDescription.textContent = resultText;
-            
-            document.getElementById('questionSection').style.display = 'none';
-	    document.getElementById('resultSection').style.display = 'block';
-	    updateResultButtonsVisibility();
-        }
+        
+        resultDescription.textContent = resultText;
+        
+        document.getElementById('questionSection').style.display = 'none';
+        document.getElementById('resultSection').style.display = 'block';
+        updateResultButtonsVisibility();
+    }
 
 	function goBackFromResult() {
 	    // Hide result view
@@ -623,17 +636,17 @@
 	    }
 	}
 
-        function resetTool() {
-            document.getElementById('categorySelection').style.display = 'block';
-            document.getElementById('questionSection').style.display = 'none';
-	    document.getElementById('resultSection').style.display = 'none';
-            
-            currentCategory = '';
-            currentQuestion = '';
-            questionPath = [];
-        }
+    function resetTool() {
+        document.getElementById('categorySelection').style.display = 'block';
+        document.getElementById('questionSection').style.display = 'none';
+        document.getElementById('resultSection').style.display = 'none';
+        
+        currentCategory = '';
+        currentQuestion = '';
+        questionPath = [];
+    }
 
-        document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function() {
             loadYamlFromFile('./decision-tree.yml');
         });
     </script>

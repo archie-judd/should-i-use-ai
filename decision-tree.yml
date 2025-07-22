@@ -1,559 +1,1466 @@
 categories:
   task:
-    title: "🛠️ Task Completion"
-    examples: "Writing emails, coding projects, data analysis, document formatting"
+    title: 🛠️ Task Completion
+    examples: Writing emails, coding projects, data analysis, document formatting
     questions:
       "1.1":
-        text: "Could serious harm result if the AI output is wrong or misleading?"
-        context: "Consider consequences to health, finances, legal standing, or safety"
+        text: Could serious harm result if the AI output is wrong or misleading?
+        context: Consider consequences to health, finances, legal standing, or safety
         answers:
-          - brief: "Yes - Serious, irreversible harm"
-            detail: "Wrong information could cause significant damage that's hard to undo"
-            examples: "Interpreting chest pain symptoms for 65-year-old father, choosing which $80K in retirement savings to move to growth stocks, writing employment contract termination clauses without legal review, creating chemical handling procedures for 15-person warehouse team, filing taxes for $150K freelance income, diagnosing why diabetic mother is increasingly confused"
-            result: "avoid"
-            result_text: "Use experts or manual methods instead of AI"
-          - brief: "Maybe - Moderate harm, repairable with effort"
-            detail: "Mistakes could cause significant problems but would be fixable"
-            examples: "Writing annual performance review for direct report up for promotion, creating 5-year financial projections for $50K SBA loan application, organizing medical records for elderly parent's specialist appointment, choosing between 3 contractors for $25K kitchen renovation, writing company-wide email about layoffs to 200 employees"
+          - brief: Yes - Serious or irreversible harm
+            detail:
+              Wrong information could cause significant damage that's hard to
+              undo
+            examples:
+              - Interpreting chest pain symptoms for 65-year-old father
+              - Write legal response to eviction notice without lawyer review
+              - Writing employment contract without legal review
+              - Creating safety protocols for a team handling dangerous machinery
+              - Filing tax-returns for freelance business
+            result: avoid
+            result_text: Use experts or manual methods instead of AI
+          - brief: Maybe - Moderate harm, repairable with effort
+            detail: Mistakes could cause significant problems but would be fixable
+            examples:
+              - Writing annual performance review for direct report up for promotion
+              - Organising medical records for parent's specialist appointment
+              - choosing between contractors for a £10,000 bathroom renovation
+              - writing layoff announcement to 47 employees including severance details
             next: "1.2"
-          - brief: "No - Minor, easily corrected"
-            detail: "Mistakes would be manageable or easily corrected"
-            examples: "Writing follow-up email to client about meeting reschedule, formatting quarterly expense report for $3K in receipts, analyzing personal spending patterns from 6 months of credit card statements, researching 5 potential vacation destinations for family trip, creating project proposal for personal photography website"
+          - brief: No - Minor, easily corrected
+            detail: Mistakes would be manageable or easily corrected
+            examples:
+              - Writing a birthday party invitation text for a birthday party
+              - Create a food shopping list based on weekly food budget
+              - Write thank-you letter to your great-aunt
+              - Analysing personal spending patterns from bank statements
+              - Researching holiday destinations for an anniversary trip
+              - Creating a draft for a personal blog webpage
             next: "1.3"
       "1.2":
-        text: "Can you get expert review of AI output before acting on it?"
-        context: "Someone qualified who can catch important errors"
+        text: Can you get an expert to review the AI output before acting on it?
+        context: Someone qualified who can catch important errors
         answers:
-          - brief: "Yes"
-            detail: "I have access to expert review"
-            examples: "Employment lawyer can review contract language before signing, CPA can check tax calculations for $45K side business, licensed contractor can review structural renovation plans, department manager can review sensitive email to 50-person team, senior developer can review database architecture before implementation"
+          - brief: Yes
+            detail: I have access to expert review
+            examples:
+              - Employment lawyer to review contract language before signing
+              - Create meal plan for diabetic teenager, then run by school nurse before
+                continuing
+              - Licensed architect to review renovation plans
+              - Department manager can review sensitive team announcement
+              - Senior developer can review database design before implementation
             next: "1.3"
-          - brief: "No"
-            detail: "No expert review available in reasonable time"
-            examples: "Solo entrepreneur making lease decision on $4K/month office space, managing 78-year-old parent's medication confusion alone at 2am, choosing between 3 emergency plumbers for burst pipe on Sunday, working alone on client deadline with no colleagues available, can't afford $300/hour legal review for small contract"
-            result: "avoid"
-            result_text: "Risk too high without expert validation"
+          - brief: No
+            detail: No expert review available in reasonable time
+            examples:
+              - Solo entrepreneur making lease decision on £2,800/month office space
+              - Managing parent's medication confusion alone at 2am
+              - Choosing emergency plumber for burst pipe on Sunday
+              - Working alone on client deadline with no colleagues available
+              - Can't afford £200/hour legal review for small contract
+            result: avoid
+            result_text: Risk too high without expert validation
       "1.3":
-        text: "Are others evaluating your personal abilities or authenticity?"
-        context: "Situations where people expect to see YOUR skills, knowledge, or creative voice"
+        text: Does this involve confidential or sensitive information?
+        context:
+          Personal data, proprietary information, or private details that shouldn't
+          be shared
         answers:
-          - brief: "Yes"
-            detail: "This should demonstrate my own capabilities or authentic voice"
-            examples: "College admissions essay for Stanford application, take-home coding project for senior developer interview, writing performance review for team member's promotion decision, presenting quarterly results to demonstrate my leadership to C-suite, thesis defense presentation for Master's degree, writing wedding vows for ceremony with 100 guests"
-            result: "avoid"
-            result_text: "Use your own abilities - others are evaluating YOU specifically"
-          - brief: "No"
-            detail: "Others expect good results, not necessarily my personal process"
-            examples: "Client deliverable for $15K marketing campaign where they care about ROI, internal quarterly report for 12-person department, organizing logistics for 40-person family reunion, formatting monthly newsletter for 200-member volunteer organization, creating detailed budget spreadsheet for household's $8K monthly expenses"
+          - brief: Yes - Contains sensitive information
+            detail: This involves confidential, private, or proprietary data
+            examples:
+              - Processing payroll data for 25-person company
+              - Analysing client's confidential sales figures
+              - Handling medical records for family member
+              - Writing performance reviews with salary details
+              - Organizing tax documents with SSNs and account numbers
+              - Drafting legal strategy memo with privileged information
+            next: "1.12"
+          - brief: No - Information is public or non-sensitive
+            detail: No confidential or private information involved
+            examples:
+              - Writing blog post about industry trends
+              - Creating project timeline with generic milestones
+              - Analysing publicly available market data
+              - Formatting reference list for research paper
+              - Organizing holiday photos by date and location
             next: "1.4"
       "1.12":
-        text: "Can you anonymize or remove sensitive details before using AI?"
-        context: "Replace names, numbers, specific details with generic placeholders"
+        text: Can you anonymise or remove sensitive details before using AI?
+        context: Replace names, numbers, specific details with generic placeholders
         answers:
-          - brief: "Yes - Can anonymize effectively"
-            detail: "I can remove or replace sensitive details without losing core functionality"
-            examples: "Replace employee names with Employee A/B/C in performance analysis, use placeholder dollar amounts for budget template, substitute generic company names in competitive analysis, replace client names with Client 1/2/3 in project timeline, use fake addresses in mail merge template"
+          - brief: Yes - Can anonymise effectively
+            detail: I can remove or replace sensitive details without losing core functionality
+            examples:
+              - Replace employee names with Employee A/B/C in performance analysis
+              - Use placeholder amounts in budget template
+              - Substitute generic company names in competitive analysis
+              - Replace client names with Client 1/2/3 in project timeline
+              - Use sample addresses in mail merge template
             next: "1.4"
-          - brief: "No - Anonymization would make it useless"
-            detail: "The specific details are essential to the task"
-            examples: "Tax filing requiring exact SSNs and account numbers, legal contract needing precise party names and terms, medical analysis requiring specific symptoms and test results, real estate analysis needing exact property addresses and comps, family tree requiring actual names and relationships"
-            result: "avoid"
-            result_text: "Handle sensitive data with appropriate private/secure tools only"
+          - brief: No - Anonymisation would make it useless
+            detail: The specific details are essential to the task
+            examples:
+              - Tax filing requiring exact SSNs and account numbers
+              - Legal contract needing precise party names and terms
+              - Medical analysis requiring specific symptoms and test results
+              - Real estate analysis needing exact property addresses
+              - Family tree requiring actual names and relationships
+            result: avoid
+            result_text:
+              Handle sensitive data with appropriate private/secure tools
+              only
       "1.4":
-        text: "Will you do this type of task frequently in the future?"
-        context: "Consider if learning the process has long-term value"
+        text: Are others evaluating your personal abilities or authenticity?
+        context:
+          Situations where people expect to see YOUR skills, knowledge, or
+          creative voice
         answers:
-          - brief: "Regular - Monthly or more often"
-            detail: "This is something I'll need to do frequently"
-            examples: "Creating weekly team status reports for 8-person department, monthly budget analysis for $120K household income, quarterly client presentations for 5 ongoing accounts, weekly meal planning for family of 4, processing 30-50 expense receipts monthly, managing team schedules for 12 direct reports"
+          - brief: Yes
+            detail: This should demonstrate my own capabilities or authentic voice
+            examples:
+              - College admissions essay for university application
+              - Take-home coding project for developer interview
+              - Writing performance review demonstrating management skills
+              - Presenting quarterly results to show leadership to executives
+              - Thesis defense for master's degree
+              - Writing wedding vows for 120-guest ceremony
+            result: avoid
+            result_text: Use your own abilities - others are evaluating YOU specifically
+          - brief: No
+            detail: Others expect good results, not necessarily my personal process
+            examples:
+              - Client deliverable for £12k marketing campaign focused on roi
+              - Internal quarterly report for department
+              - Organising logistics for 35-person family reunion
+              - Formatting monthly newsletter for volunteer organization
+              - Creating detailed household budget spreadsheet for £6k monthly expenses
             next: "1.5"
-          - brief: "Occasional - Few times per year"
-            detail: "This comes up regularly but not frequently"
-            examples: "Annual performance reviews for 6 team members, quarterly board presentations for startup, holiday planning for extended family of 20, annual tax preparation for rental property income, semi-annual home maintenance planning, organizing kids' school paperwork each semester"
-            next: "1.5"
-          - brief: "Rare - One-time or very infrequent"
-            detail: "This is a unique situation or happens once every few years"
-            examples: "Formatting bibliography for Master's thesis, converting 500 vacation photos from Europe trip to different format, creating address labels for wedding invitations to 150 guests, organizing documents for selling childhood home, planning one-time company retreat for 40 employees"
-            next: "1.6"
       "1.5":
-        text: "Is learning this process important for your long-term goals?"
-        context: "Do you need to understand how this works for future success?"
+        text: Can you verify AI output accuracy?
+        context: Do you have the knowledge or tools to check if it's correct?
         answers:
-          - brief: "Yes"
-            detail: "Understanding this process matters for my development"
-            examples: "Learning Python data analysis for promotion to Senior Analyst role, mastering financial modeling to launch consulting business, developing presentation skills for VP-track position, understanding investment analysis to manage $200K 401k rollover, learning project management methodology for team leadership role"
-            next: "1.7"
-          - brief: "No"
-            detail: "The process itself isn't important to understand"
-            examples: "Formatting reports in company's specific template system, generating standard expense reports with preset categories, creating routine status updates with same structure, organizing digital files with established naming convention, converting between file formats for client deliverables"
-            next: "1.8"
+          - brief: No
+            detail: I cannot verify the accuracy
+            examples:
+              - Writing javascript code when i only know python
+              - Analysing financial statements for unfamiliar industries
+              - Reviewing legal contract language for areas i don't understand
+              - Troubleshooting electrical issues in 1960s home
+              - Researching medical treatments for condition i've never encountered
+            result: avoid
+            result_text: Learn basics first so you can verify AI output safely
+          - brief: Yes
+            detail: I can check the accuracy
+            examples:
+              - Writing python code for data analysis in my field
+              - Researching marketing strategies for my industry
+              - Creating content about photography hobby i've had for 8 years
+              - Formatting quarterly reports using excel functions i know well
+              - Planning european holiday for cities i've visited twice
+            next: "1.6"
       "1.6":
-        text: "Is this genuinely time-sensitive with an unavoidable deadline?"
-        context: "External deadline you cannot control, not procrastination"
+        text: Will you do this type of task frequently in the future?
+        context: Consider if learning the process has long-term value
         answers:
-          - brief: "Yes"
-            detail: "I have an urgent, unmovable deadline"
-            examples: "Board presentation slides due in 4 hours for emergency meeting, job application for dream role closes at midnight tonight, client website crashed and losing $2K/day in sales, IRS audit response due tomorrow with $15K penalty risk, preparing for parent's emergency surgery consultation in 2 hours"
-            next: "1.9"
-          - brief: "No"
-            detail: "I have adequate time or this is self-imposed urgency"
-            examples: "Personal coding project with flexible timeline, writing blog post when inspiration strikes, organizing 300 family photos over winter break, researching business ideas for potential future venture, planning garden redesign for next spring planting season"
-            next: "1.9"
-      "1.7":
-        text: "Do you have time to learn properly now?"
-        context: "Can you invest in learning without rushing?"
-        answers:
-          - brief: "Yes"
-            detail: "I can take time to learn this thoroughly"
-            examples: "Learning SQL over 3-month period before new role starts, developing Excel modeling skills for CPA exam next year, mastering Photoshop for freelance design business launch, studying investment principles before managing inherited $150K IRA, practicing public speaking before TED talk opportunity next quarter"
-            result: "avoid"
-            result_text: "Learn manually first - this investment will pay dividends"
-          - brief: "No - Urgent but learning matters"
-            detail: "Learning is important but I have time pressure"
-            examples: "Learning PowerBI for client presentation due Friday, cramming SQL for technical interview Monday, understanding mortgage process before house closing in 2 weeks, mastering new CRM system for product launch next month, learning video editing for daughter's wedding slideshow next weekend"
-            result: "assistant"
-            result_text: "Use AI as learning partner - have it explain reasoning and teach you the process while helping"
-      "1.8":
-        text: "Is this repetitive or time-consuming work?"
-        context: "Data entry, formatting, bulk processing, etc.?"
-        answers:
-          - brief: "Yes"
-            detail: "This involves repetitive or time-consuming work"
-            examples: "Converting 300 email addresses from business cards to proper CRM format, resizing 80 product photos to exact 800x600 dimensions for e-commerce site, writing personalized thank-you notes to 45 wedding guests, copying grocery receipts totaling $400/month into budget spreadsheet, organizing 250 client files into new folder structure with specific naming convention"
-            next: "1.10"
-          - brief: "No"
-            detail: "This requires unique thinking or problem-solving"
-            examples: "Writing executive summary for $2M funding proposal, diagnosing why home WiFi keeps dropping connection in specific rooms, solving Python error preventing customer database sync, planning surprise 50th birthday party for spouse with 30 guests, deciding optimal layout for 400-sq-ft home office renovation"
-            next: "1.11"
-      "1.9":
-        text: "Can you verify AI output accuracy?"
-        context: "Do you have the knowledge or tools to check if it's correct?"
-        answers:
-          - brief: "No"
-            detail: "I cannot verify the accuracy"
-            examples: "Writing JavaScript code when I only know Python, analyzing financial statements for industries I've never worked in, legal contract review for business law I'm unfamiliar with, troubleshooting electrical wiring for 1960s home addition, medical research on rare condition affecting family member"
-            result: "avoid"
-            result_text: "Learn basics first so you can verify AI output safely"
-          - brief: "Yes"
-            detail: "I can check the accuracy"
-            examples: "Writing Python code for data analysis in my field of expertise, researching marketing strategies for my industry, creating content about my 10-year hobby in photography, formatting quarterly reports using Excel functions I understand well, planning travel itinerary for European cities I've visited twice"
+          - brief: Regular - Monthly or more often
+            detail: This is something I'll need to do frequently
+            examples:
+              - Creating weekly team status reports for department
+              - Monthly budget analysis for £5k household income
+              - Quarterly client presentations for ongoing accounts
+              - Weekly meal planning for family of 4
+              - Processing 40-60 expense receipts monthly
+              - Managing schedules for 8 direct reports
+            next: "1.7"
+          - brief: Occasional - Few times per year
+            detail: This comes up regularly but not frequently
+            examples:
+              - Annual performance reviews for 6 team members
+              - Quarterly board presentations for startup
+              - Holiday planning for extended family of 18
+              - Annual tax prep for rental property
+              - Semi-annual home maintenance planning
+              - Organising school paperwork each semester
+            next: "1.7"
+          - brief: Rare - One-time or very infrequent
+            detail: This is a unique situation or happens once every few years
+            examples:
+              - Formatting bibliography for master's thesis
+              - Converting 400 holiday photos to different format
+              - Creating address labels for wedding invitations to 140 guests
+              - Organising documents for selling childhood home
+              - Planning one-time company retreat for 35 employees
             next: "1.8"
+      "1.7":
+        text: Is learning this process important for your long-term goals?
+        context: Do you need to understand how this works for future success?
+        answers:
+          - brief: Yes
+            detail: Understanding this process matters for my development
+            examples:
+              - Learning python data analysis for promotion to senior analyst
+              - Mastering financial modeling to launch consulting business
+              - Developing presentation skills for management track
+              - Understanding investment analysis to manage £120k 401k rollover
+              - Learning project management for team leadership role
+            next: "1.9"
+          - brief: No
+            detail: The process itself isn't important to understand
+            examples:
+              - Formatting reports in company's template system
+              - Generating expense reports with preset categories
+              - Creating routine status updates with same structure
+              - Organising files with established naming convention
+              - Converting file formats for client deliverables
+            next: "1.10"
+      "1.8":
+        text: Is this genuinely time-sensitive with an unavoidable deadline?
+        context: External deadline you cannot control, not procrastination
+        answers:
+          - brief: Yes
+            detail: I have an urgent, unmovable deadline
+            examples:
+              - Board presentation due in 4 hours for emergency meeting
+              - Job application closes at midnight for dream role
+              - Client website crashed losing £1
+              - 500/day in sales
+              - Irs audit response due tomorrow with £8k penalty risk
+              - Preparing for parent's surgery consultation in 3 hours
+            next: "1.5"
+          - brief: No
+            detail: I have adequate time or this is self-imposed urgency
+            examples:
+              - Personal coding project with flexible timeline
+              - Writing blog post when inspiration strikes
+              - Organising 250 family photos over winter break
+              - Researching business ideas for future venture
+              - Planning garden redesign for spring planting
+            next: "1.5"
+      "1.9":
+        text: Do you have time to learn properly now?
+        context: Can you invest in learning without rushing?
+        answers:
+          - brief: Yes
+            detail: I can take time to learn this thoroughly
+            examples:
+              - Learning sql over 3-month period before new role starts
+              - Developing excel skills for cpa exam next year
+              - Mastering photoshop for freelance design launch
+              - Studying investment principles before managing £95k inherited ira
+              - Practicing public speaking before conference opportunity
+            result: avoid
+            result_text: Learn manually first - this investment will pay dividends
+          - brief: No - Urgent but learning matters
+            detail: Learning is important but I have time pressure
+            examples:
+              - Learning powerbi for client presentation due friday
+              - Cramming sql for technical interview monday
+              - Understanding mortgage process before house closing in 2 weeks
+              - Mastering crm for product launch next month
+              - Learning video editing for daughter's wedding slideshow this weekend
+            result: assistant
+            result_text:
+              Use AI as learning partner - ask it to explain its reasoning,
+              teach you the underlying principles, and quis you on key concepts. Focus
+              on understanding 'why' not just 'what.
       "1.10":
-        text: "Is there a skill atrophy risk?"
-        context: "Will AI use prevent you from maintaining important abilities?"
+        text: Is this repetitive or time-consuming work?
+        context: Data entry, formatting, bulk processing, etc.?
         answers:
-          - brief: "Yes"
-            detail: "I might lose important skills if I use AI"
-            examples: "Writing clear, persuasive emails without help, doing quick mental math for 15% tip calculations, proofreading my own quarterly reports for logic gaps, debugging code step-by-step to understand root cause, explaining complex technical concepts to non-technical stakeholders in simple terms"
-            result: "minimal"
-            result_text: "Rotate between AI and manual methods; maintain practice"
-          - brief: "No"
-            detail: "No risk of losing important skills"
-            examples: "Resizing 50 headshots to exact LinkedIn dimensions, converting Word docs to PDFs with specific formatting, formatting bibliography with 30 sources in APA style, copying 100 client addresses into mailing label template, calculating compound interest on $25K investment over 20 years"
-            result: "efficient"
-            result_text: "Delegate strategically; verify results"
+          - brief: Yes
+            detail: This involves repetitive or time-consuming work
+            examples:
+              - Converting 250 email addresses from business cards to crm format
+              - Resising 75 product photos to 800x600 for e-commerce site
+              - Writing personalized thank-you notes to 40 wedding guests
+              - Entering grocery receipts totaling £380/month into budget app
+              - Organizing 200 client files with new naming convention
+            next: "1.11"
+          - brief: No
+            detail: This requires unique thinking or problem-solving
+            examples:
+              - Writing executive summary for £"1.5"m funding proposal
+              - Diagnosing why home wifi drops in specific rooms
+              - Solving python error preventing database sync
+              - Planning surprise 45th birthday for spouse with 28 guests
+              - Designing optimal layout for 350-sq-ft home office
+            next: "1.13"
       "1.11":
-        text: "Could regular AI use create unhealthy dependency for decision-making?"
-        context: "Will this prevent you from developing critical thinking or confidence in judgment?"
+        text: Is there a skill atrophy risk?
+        context: Will AI use prevent you from maintaining important abilities?
         answers:
-          - brief: "Yes"
-            detail: "This involves important judgment or reasoning I should develop"
-            examples: "Deciding whether to accept $15K salary increase vs. remote work option, choosing between 3 qualified candidates for team hire, evaluating whether to invest $50K inheritance in real estate vs. index funds, determining if 8-year-old child's behavior concerns warrant therapy, deciding whether to confront colleague about taking credit for my project"
-            result: "minimal"
-            result_text: "Use AI for research and perspective, but make final decisions independently"
-          - brief: "No"
-            detail: "This is tactical execution, not strategic thinking"
-            examples: "Choosing optimal file compression settings for 100 video files, determining best formatting for 20-page technical manual, selecting most efficient route for visiting 6 client offices in one day, picking color scheme for company presentation template, organizing 200 digital photos by date and location"
-            result: "efficient"
-            result_text: "Use AI efficiently for tactical work; focus your energy on strategy"
-
+          - brief: Yes
+            detail: I might lose important skills if I use AI
+            examples:
+              - Writing clear emails without help
+              - Doing quick mental math for 18% tip calculations
+              - Proofreading quarterly reports for logic gaps
+              - Debugging code step-by-step to understand root causes
+              - Explaining complex concepts to non-technical stakeholders simply
+            result: minimal
+            result_text: Rotate between AI and manual methods; maintain practice
+          - brief: No
+            detail: No risk of losing important skills
+            examples:
+              - Resising 60 headshots to linkedin dimensions
+              - Converting word docs to pdfs with formatting
+              - Formatting bibliography with 35 sources in apa style
+              - Copying 90 client addresses to mailing labels
+              - Calculating compound interest on £18k investment over 15 years
+            result: efficient
+            result_text: Delegate strategically; verify results
+      "1.13":
+        text: Could regular AI use create unhealthy dependency for decision-making?
+        context:
+          Will this prevent you from developing critical thinking or confidence
+          in judgment?
+        answers:
+          - brief: Yes
+            detail: This involves important judgment or reasoning I should develop
+            examples:
+              - Deciding whether to accept £12k salary increase vs. remote work option
+              - Choosing between 3 candidates for team hire
+              - Evaluating whether to invest £35k inheritance in real estate vs. index
+                funds
+              - Determining if 7-year-old's behavior warrants therapy
+              - Deciding whether to confront colleague taking credit for project
+            result: minimal
+            result_text:
+              Use AI for research and perspective, but make final decisions
+              independently
+          - brief: No
+            detail: This is tactical execution, not strategic thinking
+            examples:
+              - Choosing optimal compression settings for 80 video files
+              - Determining best formatting for 18-page technical manual
+              - Selecting efficient route for visiting 5 client offices
+              - Picking color scheme for presentation template
+              - Organising 180 photos by date and location
+            result: efficient
+            result_text:
+              Use AI efficiently for tactical work; focus your energy on
+              strategy
   advice:
-    title: "💬 Advice/Feedback"
-    examples: "Product recommendations, relationship decisions, career guidance, strategic planning"
+    title: 💬 Advice/Feedback
+    examples:
+      Product recommendations, relationship decisions, career guidance, strategic
+      planning
     questions:
       "2.1":
-        text: "Does this involve emotions, relationships, life-altering decisions, or vulnerable individuals?"
-        context: "Situations where human perspective and judgment are especially important"
+        text:
+          Does this involve emotions, relationships, life-altering decisions,
+          or vulnerable individuals?
+        context: Situations where human perspective and judgment are especially important
         answers:
-          - brief: "Yes"
-            detail: "This involves emotions, relationships, major decisions, or vulnerable people"
-            examples: "Deciding to move in with partner, having difficult conversation with friend, choosing career vs family time, supporting friend through tough period, deciding to start a family, navigating disagreement with teenager"
+          - brief: Yes
+            detail:
+              This involves emotions, relationships, major decisions, or vulnerable
+              people
+            examples:
+              - Deciding whether to move in with partner after 8 months together
+              - Having difficult conversation with friend about borrowed £400
+              - Choosing between career advancement and family time
+              - Supporting friend through divorce
+              - Deciding whether to start family
+              - Navigating disagreement with 16-year-old about curfew
             next: "2.2"
-          - brief: "No"
-            detail: "This doesn't involve particularly sensitive areas"
-            examples: "Choosing between $2,400/month downtown condo vs. $1,800/month suburban house with 45-minute commute, getting feedback on website redesign mockup, picking a meal prep strategy for family of four, selecting vacation destination for anniversary trip, deciding which contractor to hire for $8K bathroom renovation"
-            next: "2.5"
+          - brief: No
+            detail: This doesn't involve particularly sensitive areas
+            examples:
+              - Choosing between £8/hour retail job with unpredictable hours vs. £7.50/hour
+                job with consistent schedule
+              - Getting feedback on website redesign mockup
+              - Selecting meal prep strategy for family of four
+              - Picking anniversary holiday destination
+              - Deciding whether to spend £400 on car repair or find alternative transportation
+            next: "2.1a"
+      "2.1a":
+        text:
+          Is this an urgent practical situation where you need immediate guidance
+          and human help isn't available?
+        context: Emergency situations requiring quick practical knowledge
+        answers:
+          - brief: Yes - Emergency practical guidance needed
+            detail: I need immediate practical help with a situation that can't wait
+            examples:
+              - Water heater flooding basement at 11 pm and need to know what to shut
+                off first
+              - Car overheating on highway and need to know if it's safe to drive
+              - Circuit breaker keeps tripping and need to identify the problem
+              - Child has fever of 103°f and need to know when to go to er vs. wait for
+                doctor
+              - Small kitchen fire and need immediate safety steps
+            result: assistant
+            result_text:
+              Use AI for immediate practical guidance and safety information;
+              follow up with relevant professionals (plumber, mechanic, electrician,
+              doctor) as soon as possible
+          - brief: No - Not an emergency
+            detail: This can wait for proper consideration or consultation
+            examples:
+              - Choosing contractor for bathroom renovation next month
+              - Deciding on investment strategy for retirement savings
+              - Selecting college major for next semester
+              - Picking health insurance plan during open enrollment
+              - Choosing childcare provider with 6 weeks to decide
+            next: "2.13"
       "2.2":
-        text: "How do you want to use AI input here?"
-        context: "What kind of support are you looking for?"
+        text:
+          Are you making this decision while highly emotional or under extreme
+          time pressure?
+        context: Emotional state and urgency can significantly impact decision quality
         answers:
-          - brief: "Help me think through this"
-            detail: "I want AI to help me process, explore perspectives, or organize my thoughts"
-            examples: "Should I take this $85K job offer with 60-hour weeks vs. keeping current $70K role with better work-life balance - help me think through pros/cons, I'm upset about friend's comment at dinner party - help me process what happened, considering moving from Chicago to Austin for partner's career - what factors should I weigh?"
+          - brief: Yes - Highly emotional or urgent
+            detail: I'm very upset, anxious, angry, or facing an immediate deadline
+            examples:
+              - Just found out spouse had affair and considering divorce
+              - Furious about being passed over for promotion and want to quit immediately
+              - Panicking about layoff rumors and considering hasty job change
+              - Devastated by pet's death and making decisions about vet bills and arrangements
+              - Managing stress about utility bill overdue notices while job searching
+            result: avoid
+            result_text:
+              Take time to process intense emotions first; for urgent decisions,
+              make minimal temporary choices and revisit when calmer or seek immediate
+              human support
+          - brief: No - Emotionally stable with reasonable time
+            detail: I'm calm enough to think clearly and not facing an emergency
+            examples:
+              - Processing disappointment about promotion timeline over the weekend
+              - Feeling concerned about teenage child's grades with parent conference
+                next week
+              - Working through frustration about team dynamics before next month's project
+              - Considering relationship future after thoughtful conversation
+              - Deciding whether to downsise from family home after spouse's death
             next: "2.3"
-          - brief: "Tell me what to do"
-            detail: "I want AI to make the decision or give me the answer"
-            examples: "Should I break up with my girlfriend?, What career path should I choose after college?, How should I discipline my 8-year-old who's been lying?, Should we have another baby?, How do I handle my mother's drinking problem?"
-            result: "avoid"
-            result_text: "Develop your own judgment through self-reflection, journaling, or consultation with trusted humans, therapists, or counselors who know your full situation"
       "2.3":
-        text: "Could AI miss crucial cultural, personal, or contextual factors?"
-        context: "Does this require understanding your specific background, values, or unique circumstances?"
+        text: What kind of support are you looking for?
+        context: Different types of AI assistance serve different purposes
         answers:
-          - brief: "Yes - Context is crucial"
-            detail: "My specific background, values, or circumstances are essential"
-            examples: "Navigating workplace conflict in family business where cousin is CEO, deciding how to handle teenager's grades when parents have different cultural expectations, choosing between job offers when one conflicts with religious observance, managing care decisions for elderly parent with specific cultural traditions, handling friendship issues within tight-knit religious community"
-            result: "avoid"
-            result_text: "Seek advice from trusted humans who understand your cultural context, values, and specific circumstances"
-          - brief: "No - General frameworks apply"
-            detail: "Standard approaches and perspectives would be helpful"
-            examples: "Working through feelings about friend canceling plans last minute, processing disappointment about not getting promotion at large corporation, deciding how to respond to critical feedback from manager, figuring out how to set boundaries with demanding friend, dealing with stress about upcoming public speaking event"
+          - brief: Help me frame and explore this decision
+            detail:
+              I want AI to help me process, explore perspectives, organise my
+              thoughts, or see different angles
+            examples:
+              - Should i take £35k job with 55-hour weeks vs. keeping £28k role with better
+                work-life balance - help me weigh pros/cons
+              - I'm upset about friend's comment at dinner party - help me process what
+                happened
+              - Considering move from small town to city for partner's career - what factors
+                should i consider?
+              - Handling frustration with adult children's career choices - help me understand
+                my feelings
             next: "2.4"
+          - brief: Give me a definitive recommendation
+            detail:
+              I want AI to make the decision or tell me what the right answer
+              is
+            examples:
+              - Should i break up with my boyfriend?
+              - What career should i choose after college?
+              - How should i discipline my 9-year-old who's been lying?
+              - Should we have another baby?
+              - How do i handle my father's drinking problem?
+              - Should i quit my job without another one lined up?
+            result: avoid
+            result_text:
+              Develop your own judgment through self-reflection, journaling,
+              or consultation with people your trust, therapists, or counselors who
+              know your full situation
       "2.4":
-        text: "Are you developing emotional intelligence or relationship skills?"
-        context: "Is learning to navigate these situations part of your personal growth?"
+        text:
+          Does this require understanding your specific values, relationships,
+          or cultural background?
+        context:
+          Does this need deep knowledge of your personal context to give good
+          advice?
         answers:
-          - brief: "Yes - This is important learning"
-            detail: "I want to build my emotional or relationship skills"
-            examples: "Learning to have difficult conversations as new manager, developing conflict resolution skills in first marriage, building confidence in social situations after moving to new city, learning to set boundaries as people-pleasing tendencies, practicing vulnerability in close friendships"
-            result: "assistant"
-            result_text: "Use AI as learning partner - have it explain emotional dynamics, suggest approaches, and help you reflect; prioritize applying insights through real practice with humans"
-          - brief: "No - Just need to handle this situation"
-            detail: "I'm not focused on skill development right now"
-            examples: "Managing stress about one-time family wedding drama, processing grief about pet's death, handling frustration with delayed flight ruining vacation plans, dealing with anxiety about medical test results, working through disappointment about canceled concert"
-            result: "assistant"
-            result_text: "Use AI for emotional processing and coping strategies; consider human support for deeper or ongoing emotional needs"
+          - brief: Yes - Context is crucial
+            detail: My specific background, values, or circumstances are essential
+            examples:
+              - Deciding whether to confront coworker who takes credit for ideas when
+                you're the only woman on engineering team
+              - Choosing how to handle teenager's dating when your family has specific
+                cultural expectations around relationships
+              - Navigating promotion opportunity that would require relocating elderly
+                parents who don't speak english
+              - Handling friendship issues in tight-knit religious community
+              - Processing retirement transition after 35-year career in family business
+            result: avoid
+            result_text:
+              Seek advice from people you trust who understand your cultural
+              context, values, and specific circumstances
+          - brief: No - General frameworks apply
+            detail: Standard approaches and perspectives would be helpful
+            examples:
+              - Working through feelings about friend canceling plans last minute
+              - Processing disappointment about not getting promotion at mid-sise company
+              - Deciding how to respond to critical feedback from manager
+              - Figuring out boundaries with demanding friend
+              - Dealing with anxiety about upcoming presentation to 40 people
+            next: "2.5"
       "2.5":
-        text: "Does this require specialized expertise you don't have?"
-        context: "Legal, medical, financial, technical domains where wrong advice could cause harm"
+        text:
+          Are you trying to build skills for future similar situations, not just
+          handle this one?
+        context:
+          Are you developing emotional intelligence or relationship skills
+          for long-term growth?
         answers:
-          - brief: "Yes - Specialized knowledge required"
-            detail: "This needs domain expertise I lack"
-            examples: "Interpreting lab results for recurring symptoms, choosing between LLC vs. S-Corp for $120K freelance business, troubleshooting electrical issues in 1950s house wiring, evaluating non-compete clause in employment contract, deciding treatment options for elderly parent's diagnosis, analyzing investment risks for $200K inheritance"
-            result: "avoid"
-            result_text: "Consult qualified human experts - lawyers, doctors, licensed professionals who can be held accountable for their advice"
-          - brief: "No - General knowledge sufficient"
-            detail: "This is within general knowledge or my own expertise area"
-            examples: "Choosing between iPhone vs. Android for photography, comparing different meal planning apps, selecting ergonomic desk chair for home office, deciding between streaming services for family, picking paint colors for living room, choosing laptop for college-bound teenager"
+          - brief: Yes - This is important learning
+            detail: I want to build my emotional or relationship skills
+            examples:
+              - Learning difficult conversations as new manager of 6 people
+              - Developing conflict resolution in first marriage
+              - Building confidence in social situations after moving to new city
+              - Learning to set boundaries with people-pleasing tendencies
+              - Practicing vulnerability in close friendships
+              - Building communication skills after promotion from factory floor to supervisor
+            result: assistant
+            result_text:
+              Use AI as learning partner - have it explain emotional dynamics,
+              suggest approaches, and help you reflect; prioritise applying insights
+              through real practice with humans
+          - brief: No - Just need to handle this situation
+            detail: I'm not focused on skill development right now
+            examples:
+              - Managing stress about one-time family wedding drama
+              - Processing grief about pet's death
+              - Handling frustration with delayed flight ruining £800 holiday
+              - Dealing with anxiety about medical test results
+              - Working through disappointment about canceled concert
+              - Processing feelings about being laid off after 15 years
+            result: assistant
+            result_text:
+              Use AI for emotional processing and coping strategies; consider
+              human support for deeper or ongoing emotional needs
+      "2.13":
+        text: Are you using this to avoid a difficult but necessary conversation?
+        context:
+          Sometimes we seek AI advice to postpone uncomfortable human interactions
+          we know we should have
+        answers:
+          - brief: Yes - I'm avoiding a conversation I should have
+            detail: I'm seeking AI input instead of talking directly to the person involved
+            examples:
+              - Getting advice about roommate's messy habits instead of talking to roommate
+              - Asking how to handle underperforming team member instead of giving direct
+                feedback
+              - Seeking guidance about partner's spending instead of discussing budget
+                together
+              - Getting help with friend boundary issues instead of honest conversation
+              - Getting advice about boss's unrealistic deadlines instead of discussing
+                workload directly
+            result: avoid
+            result_text:
+              Have the direct conversation first; use AI afterward to process
+              how it went or plan follow-up if needed
+          - brief: No - Direct conversation isn't the solution here
+            detail: This isn't about avoiding a conversation with someone
+            examples:
+              - Processing feelings about ended friendship where other person won't engage
+              - Deciding how to handle situation where direct conversation would be inappropriate
+                or harmful
+              - Working through emotions about family member's addiction who refuses help
+              - Considering major life decision that affects only me
+              - Dealing with difficult boss when hr complaints have been ignored
             next: "2.6"
       "2.6":
-        text: "Will others be significantly affected by your decision?"
-        context: "Family members, employees, clients, or others whose lives will be impacted"
+        text: Do you need accountability for this decision?
+        context:
+          Would it help to have someone who can be held responsible for the
+          advice they give?
         answers:
-          - brief: "Yes - Others significantly affected"
-            detail: "This decision will substantially impact other people"
-            examples: "Choosing health insurance plan for 8-person company, deciding family vacation destination and budget for 6 people, selecting new childcare provider for 3-year-old, choosing retirement community for aging parent, deciding whether to relocate family for job opportunity, picking school district by buying house in specific area"
+          - brief: Yes - Accountability matters
+            detail: I want someone who can be held responsible for their guidance
+            examples:
+              - Financial advisor for managing £15k inheritance with licensing and fiduciary
+                duty
+              - Therapist for working through recurring relationship patterns
+              - Career coach for navigating major industry change
+              - Attorney for handling employment discrimination issue
+              - Medical professional for persistent health symptoms
+              - Debt counselor for managing £8
+              - 000 credit card debt
+            result: avoid
+            result_text:
+              Seek advice from licensed professionals who can be held accountable
+              - advisors, therapists, lawyers, doctors who have professional obligations
+              and liability
+          - brief: No - Accountability not needed
+            detail: I don't need someone who can be held responsible
+            examples:
+              - Choosing between streaming services for entertainment
+              - Deciding on home organisation system for studio apartment
+              - Selecting workout routine for personal fitness
+              - Picking hobby to pursue in free time
+              - Choosing holiday destination within £500 budget
+              - Deciding between two £650/month apartments
             next: "2.7"
-          - brief: "No - Primarily affects me"
-            detail: "This mainly impacts me personally"
-            examples: "Choosing personal laptop for freelance work, selecting gym membership for individual fitness goals, deciding which hobby to pursue in spare time, picking graduate program for career change, choosing apartment for single person lifestyle, selecting meal delivery service for busy schedule"
-            next: "2.8"
       "2.7":
-        text: "Can you involve affected parties in the decision process?"
-        context: "Are the people impacted available to participate or provide input?"
+        text: Will others be significantly affected by your decision?
+        context:
+          Family members, employees, clients, or others whose lives will be
+          impacted
         answers:
-          - brief: "Yes - They can participate"
-            detail: "I can include others in the decision-making process"
-            examples: "Family members can discuss vacation preferences and budget constraints together, team can provide input on project management tool selection, elderly parent is mentally capable of discussing care options, spouse can evaluate job relocation pros and cons together, children are old enough to participate in school choice discussion"
-            result: "assistant"
-            result_text: "Use AI to generate options and frameworks; facilitate collaborative decision-making with those affected; ensure everyone's voice is heard in final choice"
-          - brief: "No - I must decide for them"
-            detail: "I need to make this decision on behalf of others"
-            examples: "Choosing medical care for confused elderly parent, selecting childcare for toddler, deciding school placement for child with learning differences, picking insurance coverage for employees, choosing living arrangement for teenage child after divorce, selecting care facility for spouse with dementia"
-            result: "avoid"
-            result_text: "When making high-stakes decisions for others, prioritize human consultation with relevant experts and people who know the individuals involved"
-      "2.8":
-        text: "Are you actively developing judgment skills in this area?"
-        context: "Building decision-making abilities that matter for your goals"
-        answers:
-          - brief: "Yes - Building important judgment"
-            detail: "I'm trying to develop my judgment skills here"
-            examples: "Learning to evaluate employee performance for new manager role, developing investment judgment for managing $45K 401k rollover, building design sense for interior decorating business, cultivating negotiation skills for sales career, learning to assess code quality as junior developer, developing product sense for startup founder role"
+          - brief: Yes - Major impact
+            detail: This decision will substantially impact other people's lives
+            examples:
+              - Choosing health insurance plan for 12-person small business
+              - Deciding whether to relocate family for job opportunity
+              - Selecting childcare provider for 4-year-old
+              - Choosing retirement community for aging parent
+              - Picking school district by buying house in specific area
+              - Deciding whether to close family restaurant during slow season
+            next: "2.8"
+          - brief: Somewhat - Minor to moderate impact
+            detail: Others will be affected but not dramatically
+            examples:
+              - Choosing open office vs. private office that affects team collaboration
+              - Selecting family streaming services that influence everyone's viewing
+                options
+              - Picking dinner restaurant when hosting parents for weekend
+              - Choosing work schedule that affects childcare pickup timing
+              - Deciding family holiday activities within agreed destination
+            next: "2.8"
+          - brief: No - Primarily affects me
+            detail: This mainly impacts me personally
+            examples:
+              - Choosing personal laptop for freelance work
+              - Selecting £25/month gym vs. free community center fitness classes
+              - Deciding which hobby to pursue in spare time
+              - Picking graduate program for career change
+              - Choosing studio apartment for single lifestyle
+              - Selecting £30/week meal delivery service vs. cooking
             next: "2.9"
-          - brief: "No - Not focused on judgment development"
-            detail: "I'm not trying to build judgment here"
-            examples: "Choosing laptop for college student daughter, picking restaurant for client dinner, selecting project management tool for 5-person remote team, deciding which streaming device to buy for parents, choosing between two similar apartments for short-term rental"
-            next: "2.10"
+      "2.8":
+        text: Can you involve affected parties in the decision process?
+        context: Are the people impacted available to participate or provide input?
+        answers:
+          - brief: Yes - They can participate
+            detail: I can include others in the decision-making process
+            examples:
+              - Family can discuss holiday preferences and budget constraints together
+              - Team can give input on office layout preferences
+              - Elderly parent can discuss care options and preferences
+              - Spouse can evaluate job relocation pros and cons together
+              - Teenagers can participate in family streaming service discussion
+              - Restaurant staff can discuss seasonal closure impacts
+            result: assistant
+            result_text:
+              Use AI to generate options and frameworks; facilitate collaborative
+              decision-making with those affected; ensure everyone's voice is heard
+              in final choice
+          - brief: No - I must decide for them
+            detail: I need to make this decision on behalf of others
+            examples:
+              - Choosing medical care for confused elderly parent
+              - Selecting childcare for 3-year-old
+              - Deciding school placement for child with learning differences
+              - Picking insurance coverage for employees who haven't engaged in selection
+                process
+              - Choosing living arrangement for teenage child after divorce
+              - Deciding treatment options for family member in crisis
+            result: avoid
+            result_text:
+              When making high-stakes decisions for others, prioritise human
+              consultation with relevant experts and people who know the individuals
+              involved
       "2.9":
-        text: "Do you have time to research and learn properly?"
-        context: "Can you invest in developing your own judgment without rushing?"
+        text: Are you actively developing judgment skills in this area?
+        context: Building decision-making abilities that matter for your goals
         answers:
-          - brief: "Yes - I have time to learn"
-            detail: "I can invest time in developing judgment"
-            examples: "Learning investment principles over 6 months before managing IRA rollover, developing hiring skills before next quarter's team expansion, building design judgment through courses before launching interior design business, studying negotiation techniques before major client contract renewal, learning code review practices during mentorship program"
-            result: "avoid"
-            result_text: "Invest in learning the judgment skills manually first - this foundation will serve you long-term; use human mentors and structured learning"
-          - brief: "No - Time pressure but learning matters"
-            detail: "Learning is important but I have deadlines"
-            examples: "Need to make hiring decision by Friday but want to improve interview skills, choosing investment allocation before 401k rollover deadline next week, selecting vendor for product launch in 2 months while learning procurement, deciding on marketing strategy for campaign starting Monday while building marketing judgment"
-            result: "assistant"
-            result_text: "Use AI as learning partner - have it explain reasoning, teach decision frameworks, and walk through the logic while helping with this specific decision"
-      "2.10":
-        text: "Will you face similar decisions frequently?"
-        context: "Is this a recurring type of choice you'll need to make?"
-        answers:
-          - brief: "Yes - Regular decisions"
-            detail: "I'll face similar choices often"
-            examples: "Choosing vendors for monthly client projects, selecting team lunch spots for weekly meetings, picking software tools for different client needs, choosing contractors for various home maintenance tasks, deciding on marketing approaches for seasonal campaigns, selecting gifts for regular family occasions"
+          - brief: Yes - Building important judgment
+            detail: I'm trying to develop my judgment skills here
+            examples:
+              - Learning to evaluate employee performance for new manager role
+              - Developing investment judgment for managing £25k 401k rollover
+              - Building design sense for interior decorating side business
+              - Cultivating negotiation skills for sales career
+              - Learning to assess freelance clients for sustainable work relationships
+              - Developing budgeting skills after promotion doubled income
+            next: "2.10"
+          - brief: No - Not focused on judgment development
+            detail: I'm not trying to build judgment here
+            examples:
+              - Choosing laptop for college-bound son
+              - Picking restaurant for client dinner
+              - Selecting project management tool for 4-person remote team
+              - Deciding between two similar £800/month apartments for short-term rental
+              - Choosing streaming device for elderly parents
+              - Picking winter coat within £100 budget
             next: "2.11"
-          - brief: "No - Rare or one-time decision"
-            detail: "This is unusual or happens infrequently"
-            examples: "Choosing college for high school senior, selecting wedding venue for once-in-lifetime event, picking retirement home for aging parent, choosing architect for custom home build, deciding on major kitchen renovation approach, selecting treatment center for family member's addiction"
-            next: "2.12"
+      "2.10":
+        text: Do you have time to research and learn properly?
+        context: Can you invest in developing your own judgment without rushing?
+        answers:
+          - brief: Yes - I have time to learn
+            detail: I can invest time in developing judgment
+            examples:
+              - Learning investment principles over 6 months before ira rollover
+              - Developing hiring skills before next quarter's team expansion
+              - Building design judgment through courses before launching business
+              - Studying negotiation before major client contract
+              - Learning code review during mentorship program
+              - Developing budgeting skills with 3 months before big purchase
+            result: avoid
+            result_text:
+              Invest in learning the judgment skills manually first - this
+              foundation will serve you long-term; use human mentors and structured
+              learning
+          - brief: No - Time pressure but learning matters
+            detail: Learning is important but I have deadlines
+            examples:
+              - Need hiring decision by friday but want to improve interview skills
+              - Choosing investment allocation before 401k deadline next week
+              - Selecting vendor for product launch in 6 weeks while learning procurement
+              - Deciding marketing strategy for monday campaign while building judgment
+              - Choosing health insurance before enrollment closes but want to learn about
+                options
+            result: assistant
+            result_text:
+              Use AI as learning partner - have it explain reasoning, teach
+              decision frameworks, and walk through the logic while helping with this
+              specific decision
       "2.11":
-        text: "Would developing a systematic approach benefit you?"
-        context: "Would a reusable framework or criteria help with future similar decisions?"
+        text: Will you face similar decisions frequently?
+        context: Is this a recurring type of choice you'll need to make?
         answers:
-          - brief: "Yes - Framework would help"
-            detail: "A systematic approach would be valuable"
-            examples: "Vendor evaluation criteria for consistent client project quality, systematic approach for team restaurant selection considering dietary needs and budget, standardized tool evaluation process for different client technology needs, framework for contractor vetting across various home projects"
-            result: "assistant"
-            result_text: "Have AI help create reusable decision framework; customize it with your priorities; use it as starting point for future similar decisions"
-          - brief: "No - Case-by-case is better"
-            detail: "Each situation is too unique for systematic approach"
-            examples: "Each client project has unique creative requirements that don't fit templates, family gift-giving depends heavily on current interests and relationships, marketing approaches vary dramatically by season and audience mood, contractor needs vary significantly by project type and urgency"
+          - brief: Yes - Regular decisions
+            detail: I'll face similar choices often
+            examples:
+              - Choosing vendors for monthly client projects
+              - Selecting team lunch spots for weekly meetings within £15/person budget
+              - Picking software tools for different client needs
+              - Choosing contractors for various home maintenance tasks
+              - Deciding marketing approaches for seasonal campaigns
+              - Selecting gifts for regular family occasions within tight budget
             next: "2.12"
+          - brief: No - Rare or one-time decision
+            detail: This is unusual or happens infrequently
+            examples:
+              - Choosing community college for high school senior
+              - Selecting wedding venue for once-in-lifetime £8k event
+              - Picking retirement home for aging parent
+              - Choosing architect for custom home build
+              - Deciding on major kitchen renovation
+              - Selecting treatment center for family addiction
+              - Buying first car after years of public transit
+            next: "2.14"
       "2.12":
-        text: "What type of input would be most helpful?"
-        context: "What kind of AI assistance do you need?"
+        text: Would developing a systematic approach benefit you?
+        context: Would a reusable framework or criteria help with future similar decisions?
         answers:
-          - brief: "Multiple perspectives and options"
-            detail: "Help me explore different approaches and considerations"
-            examples: "What are various ways to organize home office space for productivity?, Show me different investment allocation strategies for 35-year-old saving for retirement, What are pros and cons of different approaches to meal planning for busy family?, Explore different color palettes and layout options for small business website"
-            result: "assistant"
-            result_text: "Use AI to generate comprehensive options and considerations; apply your own values and priorities to evaluate and choose what fits your situation"
-          - brief: "Direct recommendation with reasoning"
-            detail: "Give me your best suggestion based on my criteria"
-            examples: "Which of these three $1,200 laptops is best for video editing and business travel?, What's the most reliable family SUV under $35K for household with 2 kids and a dog?, Recommend morning routine for working parent with 6am-7pm schedule and 45-minute commute, Which project management tool works best for creative agency with 12 remote employees?"
-            result: "assistant"
-            result_text: "Get AI recommendation with clear reasoning; independently verify key claims and research; make final decision based on your specific needs and any factors AI might have missed"
-
+          - brief: Yes - Framework would help
+            detail: A systematic approach would be valuable
+            examples:
+              - Vendor evaluation criteria for consistent client project quality
+              - Systematic approach for team restaurant selection considering dietary
+                needs and £15/person budget
+              - Standardised tool evaluation for client technology needs
+              - Framework for contractor vetting across home projects
+              - Criteria for evaluating part-time job opportunities while in school
+            result: assistant
+            result_text:
+              Have AI help create reusable decision framework; customise
+              it with your priorities; use it as starting point for future similar decisions
+          - brief: No - Case-by-case is better
+            detail: Each situation is too unique for systematic approach
+            examples:
+              - Each client project has unique creative requirements that don't fit templates
+              - Family gift-giving depends on current interests and relationships
+              - Marketing approaches vary dramatically by season and audience
+              - Contractor needs vary significantly by project type and urgency
+              - Part-time jobs have too many variables for standard evaluation
+            next: "2.14"
+      "2.14":
+        text: What type of input would be most helpful?
+        context: What kind of AI assistance do you need?
+        answers:
+          - brief: Multiple perspectives and options
+            detail: Help me explore different approaches and considerations
+            examples:
+              - What are various ways to organise 250-sq-ft studio apartment for productivity?
+              - Show me different savings strategies for 22-year-old making £32k/year
+              - What are pros and cons of meal planning approaches for single parent with
+                two jobs?
+              - Explore color palettes and layouts for small business website
+              - Options for managing elderly parent's care on limited budget
+            result: assistant
+            result_text:
+              Use AI to generate comprehensive options and considerations;
+              apply your own values and priorities to evaluate and choose what fits
+              your situation
+          - brief: Direct recommendation with reasoning
+            detail: Give me your best suggestion based on my criteria
+            examples:
+              - Which of these three £600 laptops is best for video editing and business
+                travel?
+              - What's most reliable family suv under £18k for household with 2 kids and
+                dog?
+              - Recommend morning routine for working parent with 6am-7pm schedule and
+                50-minute commute?
+              - Which project management tool for creative agency with 9 remote employees?
+              - Best approach for managing £4
+              - 000 credit card debt on £35k salary
+            result: assistant
+            result_text:
+              Get AI recommendation with clear reasoning; independently verify
+              key claims and research; make final decision based on your specific needs
+              and any factors AI might have missed
   research:
-    title: "🔍 Research/Learning"
-    examples: "Academic papers, fact-checking, learning new topics, background research"
+    title: 🔍 Research/Learning
+    examples: Academic papers, fact-checking, learning new topics, background research
     questions:
       "3.1":
-        text: "Does this require verified sources, academic rigor, or compliance documentation?"
-        context: "Research where accuracy and proper citations are essential"
+        text: Does this require verified sources, academic rigor, or compliance documentation?
+        context: Research where accuracy and proper citations are essential
         answers:
-          - brief: "Yes"
-            detail: "Requires verified sources or is academic/professional/compliance work"
-            examples: "Academic papers, legal research, medical literature review, compliance documentation"
-            result: "avoid"
-            result_text: "Use primary sources; proper citations required"
-          - brief: "No"
-            detail: "Not critical research"
-            examples: "General learning, hobby research, casual fact-checking, background information"
+          - brief: Yes
+            detail:
+              Requires verified sources or is academic/professional/compliance
+              work
+            examples:
+              - Writing master's thesis on climate policy
+              - Researching tenant rights for disputed £1
+              - 200 security deposit return
+              - Medical literature review for patient treatment protocol
+              - Compliance documentation for fda drug approval
+              - Legal brief citing case precedents for employment discrimination lawsuit
+            result: avoid
+            result_text:
+              Use primary sources and authoritative databases; proper citations
+              and verification required for professional/academic credibility
+          - brief: No
+            detail: Not critical research requiring formal verification
+            examples:
+              - Researching best telescope under £800 for amateur astronomy
+              - Learning python basics for personal project
+              - Fact-checking news article claims for personal understanding
+              - Background research on potential employer's company culture
+              - Understanding cryptocurrency basics before small investment
             next: "3.2"
       "3.2":
-        text: "Is skill-building a priority?"
-        context: "Is research methodology important for your development?"
+        text: Are you under significant time pressure for this research?
+        context:
+          Do you need this information quickly for an immediate decision or
+          deadline?
         answers:
-          - brief: "Yes"
-            detail: "Time pressure"
-            examples: "Learning research methods under deadline, developing search skills quickly"
-            result: "minimal"
-            result_text: "Scaffolding for structure; validate all sources independently"
-          - brief: "Yes"
-            detail: "Skill-building is important"
-            examples: "Learning to research properly, developing critical evaluation skills, academic training"
-            result: "avoid"
-            result_text: "Practice research skills manually"
-          - brief: "No"
-            detail: "Not focused on skill-building"
-            examples: "Need quick facts, one-time information gathering, not developing research expertise"
+          - brief: Yes - Time pressure
+            detail: I need this information quickly for an urgent decision or deadline
+            examples:
+              - Researching contractor options for emergency £3
+              - 500 roof repair needed before next week's storms
+              - Understanding medical procedure options before friday's doctor appointment
+              - Comparing job offers with 48-hour decision deadline
+              - Researching daycare options when current provider gave 2-week notice
             next: "3.3"
-      "3.3":
-        text: "Can you verify information?"
-        context: "Do you have expertise/resources to fact-check?"
-        answers:
-          - brief: "No"
-            detail: "I cannot verify the information"
-            examples: "Unfamiliar field, no subject matter expertise, no access to verification sources"
-            result: "avoid"
-            result_text: "Use authoritative sources directly"
-          - brief: "Yes"
-            detail: "I can verify information"
-            examples: "Know the subject well, have reliable sources, can cross-reference facts"
+          - brief: No - Have adequate time
+            detail: I can take time to research this properly
+            examples:
+              - Planning next year's family holiday to japan with 8-month timeline
+              - Researching graduate programs for application next fall
+              - Learning about investment strategies for retirement planning
+              - Researching best practices for vegetable gardening before spring planting
+                season
             next: "3.4"
-      "3.4":
-        text: "Do you need to retain or apply knowledge?"
-        context: "How will you use this information?"
+      "3.3":
+        text: Can you verify the key information independently?
+        context: Do you have the knowledge or resources to fact-check critical details?
         answers:
-          - brief: "Deep retention"
-            detail: "Needed"
-            examples: "Building expertise, foundational learning, long-term skill development"
-            result: "assistant"
-            result_text: "Interactive learning; teach concepts back; create your own examples"
-          - brief: "Application"
-            detail: "Needed"
-            examples: "Implementing solutions, practical use, applying concepts to projects"
-            result: "assistant"
-            result_text: "Focus on understanding; AI provides analogies/examples only"
-          - brief: "Quick reference"
-            detail: ""
-            examples: "One-time lookup, immediate need, disposable information"
-            result: "efficient"
-            result_text: "Save time; verify key facts from authoritative sources"
-
+          - brief: Yes - I can verify important details
+            detail: I have enough knowledge or access to sources to check key facts
+            examples:
+              - I'm experienced contractor who can verify repair techniques and material
+                costs
+              - I'm nurse who can evaluate basic medical information accuracy
+              - I have financial background to assess investment advice credibility
+              - I can check restaurant reviews against multiple sources
+            result: assistant
+            result_text:
+              Use AI for quick overview and starting points; independently
+              verify all critical facts and numbers before making decisions
+          - brief: No - Cannot verify reliably
+            detail: I lack expertise or reliable sources to check the information
+            examples:
+              - I don't understand legal terminology well enough to verify tenant law
+                accuracy
+              - I have no medical background to assess treatment option information
+              - I lack financial knowledge to evaluate complex investment strategies
+              - I can't assess contractor qualification claims
+            result: avoid
+            result_text:
+              Go directly to authoritative sources - professional websites,
+              government resources, licensed professionals, or verified databases
+      "3.4":
+        text:
+          Are you trying to develop research skills or deep expertise in this
+          area?
+        context: Is learning how to research effectively part of your goal?
+        answers:
+          - brief: Yes - Skill development is important
+            detail:
+              I want to build my research abilities or become knowledgeable in
+              this field
+            examples:
+              - Learning research methodology for graduate school preparation
+              - Developing due diligence skills for real estate investing career
+              - Building expertise in sustainable technology for environmental consulting
+                work
+              - Learning to evaluate medical studies for health coaching business
+            next: "3.5"
+          - brief: No - Just need the information
+            detail: I'm not focused on building research skills right now
+            examples:
+              - Need quick facts about child development stages for parenting decision
+              - Want to understand mortgage refinancing options for current home
+              - Researching travel requirements for upcoming business trip to germany
+              - Learning enough about car maintenance to talk intelligently with mechanic
+            next: "3.6"
+      "3.5":
+        text: Do you have time to learn research methods properly?
+        context: Can you invest in developing systematic research skills?
+        answers:
+          - brief: Yes - I have time to learn properly
+            detail: I can invest time in developing research methodology
+            examples:
+              - Have semester to learn academic research before thesis work
+              - Taking 6 months to develop investment analysis skills before managing
+                family portfolio
+              - Spending summer learning market research techniques before launching consulting
+                business
+            result: avoid
+            result_text:
+              Practice research skills manually using library resources,
+              academic databases, and human mentors; this foundational learning will
+              serve you long-term
+          - brief: No - Time pressure but skill development matters
+            detail: Learning is important but I have immediate deadlines
+            examples:
+              - Need market research completed by month-end but want to learn the process
+              - Must finish literature review for project while developing academic research
+                skills
+              - Need investment analysis done this week but want to build those capabilities
+            result: assistant
+            result_text:
+              Use AI as research tutor - have it explain methodology, teach
+              evaluation criteria, and walk through the process while helping with current
+              project
+      "3.6":
+        text: How will you use this information?
+        context: What's your intended application of the research results?
+        answers:
+          - brief: Deep understanding needed
+            detail: I need to thoroughly understand concepts to apply them effectively
+            examples:
+              - Understanding investment principles to manage £45k inheritance wisely
+              - Learning parenting approaches to handle 4-year-old's behavioral challenges
+              - Grasping small business tax implications before launching £15k/month consulting
+                practice
+              - Understanding home renovation process before £25k kitchen remodel
+            result: assistant
+            result_text:
+              Use AI for interactive learning - ask for explanations, examples,
+              and analogies; have it test your understanding; focus on grasping underlying
+              principles
+          - brief: Practical application focus
+            detail: I need to implement solutions or take specific actions
+            examples:
+              - Learning specific excel formulas for monthly financial reports
+              - Understanding meal prep techniques for family of 5
+              - Researching interview techniques for upcoming job search
+              - Learning basic car maintenance to save on £800/year mechanic visits
+            result: assistant
+            result_text:
+              Use AI for step-by-step guidance and troubleshooting; focus
+              on actionable information; verify critical steps independently
+          - brief: Quick reference only
+            detail: One-time lookup for immediate use
+            examples:
+              - Checking normal heart rate ranges before doctor visit
+              - Looking up tipping customs before business dinner in tokyo
+              - Finding average salary ranges before salary negotiation
+              - Checking weather patterns before weekend camping trip planning
+            result: assistant
+            result_text:
+              Use AI for quick facts and overviews; cross-check important
+              details with authoritative sources; efficient for one-time information
+              needs
   creative:
-    title: "🎨 Creative/Personal Expression"
-    examples: "Writing stories, designing graphics, brainstorming ideas, content creation"
+    title: 🎨 Creative/Personal Expression
+    examples: Writing stories, designing graphics, brainstorming ideas, content creation
     questions:
       "4.1":
-        text: "Does this involve sensitive themes, require authentic personal voice, or affect your reputation?"
-        context: "Creative work where originality and authenticity are essential"
+        text:
+          Does this involve sensitive themes, require authentic personal voice,
+          or affect your reputation?
+        context: Creative work where originality and authenticity are essential
         answers:
-          - brief: "Yes"
-            detail: "Authenticity essential or reputation at stake"
-            examples: "Personal memoir, professional portfolio, public artwork, brand messaging"
-            result: "avoid"
-            result_text: "Authentic voice required"
-          - brief: "No"
-            detail: "Not critical creative work"
-            examples: "Practice exercises, internal brainstorming, rough drafts, experimental work"
+          - brief: Yes
+            detail: Authenticity essential or reputation at stake
+            examples:
+              - Writing memoir about recovering from £45k gambling addiction
+              - Creating graphic design portfolio for freelance career targeting £75/hour
+                clients
+              - Public mural for downtown arts district
+              - Brand messaging for family therapy practice
+              - Personal blog about parenting special needs child
+            result: avoid
+            result_text:
+              Authentic personal voice and original creative expression are
+              essential for credibility and integrity
+          - brief: No
+            detail: Not critical creative work requiring personal authenticity
+            examples:
+              - Practice sketching exercises for art class
+              - Internal brainstorming for team project ideas
+              - Rough draft concepts for client presentation
+              - Experimental photography techniques
+              - Creative writing prompts for skill building
             next: "4.2"
       "4.2":
-        text: "Is voice or style development a priority?"
-        context: "Are you building your creative abilities?"
+        text: Are you developing creative skills or finding your unique voice?
+        context: Is building your creative abilities a key goal here?
         answers:
-          - brief: "Yes"
-            detail: "I'm developing my creative abilities"
-            examples: "Learning to write, developing artistic style, building design skills, finding your voice"
+          - brief: Yes - Skill development is important
+            detail: I'm working to develop my creative abilities or artistic voice
+            examples:
+              - Learning digital illustration techniques for graphic design career change
+              - Developing writing style through daily journaling practice
+              - Building photography skills for wedding business launch
+              - Finding design aesthetic for interior decorating side business
+              - Practicing songwriting to perform at local venues
             next: "4.3"
-          - brief: "No"
-            detail: "Not focused on development"
-            examples: "One-off project, quick content creation, not building creative skills"
-            next: "4.5"
+          - brief: No - Not focused on creative development
+            detail: I'm not trying to build creative skills right now
+            examples:
+              - Need 5 social media posts for small bakery's valentine's day promotion
+              - Creating simple flyer for neighborhood garage sale
+              - Writing thank-you notes for wedding gifts
+              - Designing basic logo for friend's lawn care service
+              - Making photo collage for parent's 60th birthday
+            next: "4.6"
       "4.3":
-        text: "Are you working alone or collaborating?"
-        context: "Is this individual or team work?"
+        text: Is the creative process itself valuable to you?
+        context:
+          Do you find personal value in the act of creating, beyond the end
+          result?
         answers:
-          - brief: "Team project"
-            detail: ""
-            examples: "Group creative work, collaborative writing, team brainstorming, shared creative project"
-            result: "minimal"
-            result_text: "Transparent about AI use; focus on your unique contribution"
-          - brief: "Personal work"
-            detail: ""
-            examples: "Individual art project, personal writing, solo creative exploration"
+          - brief: Yes - Process is valuable
+            detail: The act of creating is personally meaningful or therapeutic
+            examples:
+              - Daily journaling for mental health and self-reflection
+              - Painting watercolors for stress relief after £65k/year high-pressure job
+              - Writing poetry to process grief from parent's death
+              - Creative writing as emotional outlet during divorce
+              - Woodworking for mindfulness and satisfaction
+            result: avoid
+            result_text:
+              The creative process itself is your goal - engaging in the
+              full creative journey builds skills and provides personal benefits that
+              AI assistance would diminish
+          - brief: No - Outcome focused
+            detail: I'm primarily interested in the final result or product
+            examples:
+              - Learning photoshop techniques to create better marketing materials
+              - Practicing guitar to play specific songs at family gatherings
+              - Developing writing skills to launch freelance content business
+              - Improving drawing ability to illustrate children's book idea
             next: "4.4"
       "4.4":
-        text: "Process or outcome focus?"
-        context: "Is the act of creation valuable to you?"
+        text: Do you have time to practice and learn at your own pace?
+        context: Can you invest time in developing skills without rushing?
         answers:
-          - brief: "Process matters"
-            detail: "The creative act is valuable"
-            examples: "Journaling for reflection, art therapy, mindful creation, skill practice"
-            result: "avoid"
-            result_text: "Creative development is the goal"
-          - brief: "Outcome focus"
-            detail: "Time pressure"
-            examples: "Deadline-driven content, quick turnaround projects, urgent creative needs"
-            result: "minimal"
-            result_text: "Draft/brainstorm assist only; majority your work"
-          - brief: "Outcome focus"
-            detail: ""
-            examples: "Content for specific purpose, deliverable-focused work, result-oriented creation"
-            result: "assistant"
-            result_text: "Collaborative creation; maintain creative control"
+          - brief: Yes - I have time to learn properly
+            detail: I can take time to develop skills through practice
+            examples:
+              - Six months to learn video editing before launching youtube channel
+              - Summer break to develop painting techniques
+              - Year to improve writing before submitting novel manuscript
+              - Evenings and weekends to learn web design for career transition
+            result: avoid
+            result_text:
+              Practice creative skills manually - this hands-on learning
+              builds intuition, personal style, and problem-solving abilities that serve
+              you long-term
+          - brief: No - Time pressure but learning matters
+            detail: Learning is important but I have deadlines or constraints
+            examples:
+              - Need marketing graphics completed this month while learning design principles
+              - Must finish art project for class while developing techniques
+              - Creating business presentation next week while building visual design
+                skills
+              - Learning video editing for client project due in 10 days
+            result: assistant
+            result_text:
+              Use AI as creative tutor - have it explain techniques, suggest
+              approaches, and provide examples while you create; focus on learning principles
+              through application
       "4.5":
-        text: "Attribution or platform requirements?"
-        context: "Check policies for school, work, publishing, etc."
+        text: Are you working alone or with others?
+        context: Is this individual work or part of a collaborative effort?
         answers:
-          - brief: "Must be original"
-            detail: ""
-            examples: "Academic submissions, contest entries, published work requiring originality"
-            result: "avoid"
-            result_text: "Original work required"
-          - brief: "AI collaboration allowed"
-            detail: ""
-            examples: "Work projects permitting AI, platforms allowing AI assistance, collaborative creation"
-            result: "assistant"
-            result_text: "Collaborator role; >50% your content; verify no plagiarism"
-          - brief: "AI use permitted"
-            detail: ""
-            examples: "Internal content, personal projects, platforms explicitly allowing AI generation"
-            result: "efficient"
-            result_text: "Time-saver; verify originality"
-
+          - brief: Collaborative project
+            detail: Working with team members, clients, or creative partners
+            examples:
+              - Co-writing marketing campaign with agency colleagues
+              - Designing website with business partner
+              - Creating presentation graphics for team project
+              - Brainstorming video concepts for client with creative director
+              - Developing brand materials with small business owner
+            result: assistant
+            result_text:
+              Use AI transparently as ideation tool; ensure your unique creative
+              contribution is substantial and clearly defined within the collaboration
+          - brief: Solo project
+            detail: Individual creative work
+            examples:
+              - Personal art project for portfolio development
+              - Writing short stories for creative writing class
+              - Designing invitations for own wedding
+              - Creating photo series for gallery submission
+              - Composing music for personal enjoyment
+            result: assistant
+            result_text:
+              Use AI for technique guidance and feedback; maintain creative
+              control and ensure the work reflects your developing artistic vision
+      "4.6":
+        text: Is this for commercial, professional, or educational use?
+        context: What's the intended purpose and audience for this creative work?
+        answers:
+          - brief: Commercial/Professional use
+            detail: For business, clients, or professional purposes
+            examples:
+              - Social media content for £25k/month marketing budget
+              - Graphics for consulting firm's client presentations
+              - Website copy for local restaurant's online ordering system
+              - Promotional videos for real estate agent's £2m property listings
+              - Brochure design for medical practice
+            next: "4.7"
+          - brief: Educational/Academic use
+            detail: For school, training, or formal learning
+            examples:
+              - Art project for college portfolio review
+              - Creative writing assignment for mfa program
+              - Design project for graphic arts certificate
+              - Video project for film studies class
+              - Presentation graphics for mba coursework
+            next: "4.8"
+          - brief: Personal use
+            detail: For family, friends, or personal enjoyment
+            examples:
+              - Birthday invitation design for 8-year-old's party
+              - Family newsletter for holiday updates
+              - Photo book layout for grandparents' 50th anniversary
+              - Playlist and artwork for workout routine
+              - Creative gift ideas for spouse's promotion celebration
+            next: "4.9"
+      "4.7":
+        text: Do you need to maintain full creative ownership and originality?
+        context: Are there legal, ethical, or brand requirements for original work?
+        answers:
+          - brief: Yes - Full originality required
+            detail:
+              Legal, ethical, or brand requirements demand completely original
+              work
+            examples:
+              - Trademark logo design for startup's £50k brand identity
+              - Original artwork for gallery exhibition and potential £15k sales
+              - Unique product packaging design for patent application
+              - Custom illustrations for children's book publication
+              - Signature style graphics for personal brand
+            result: avoid
+            result_text:
+              Full creative ownership and originality are required - use
+              your own creative abilities to ensure legal protection and authentic brand
+              representation
+          - brief: No - Collaborative creation acceptable
+            detail: AI collaboration is permitted and appropriate
+            examples:
+              - Internal marketing materials where efficiency matters
+              - Social media graphics for small business with limited budget
+              - Presentation visuals for team meetings
+              - Concept development for client review and feedback
+              - Brainstorming session materials
+            result: assistant
+            result_text:
+              Use AI as creative collaborator while maintaining majority
+              creative control; verify no copyright issues and ensure work aligns with
+              professional standards
+      "4.8":
+        text: Does your institution require original work or allow AI collaboration?
+        context: Check academic honesty policies and assignment requirements
+        answers:
+          - brief: Original work required
+            detail: Academic policies require completely original creative work
+            examples:
+              - Portfolio submission for art school admission
+              - Creative thesis project for graduation requirements
+              - Original composition for music degree
+              - Independent study creative project
+              - Contest submission with originality requirements
+            result: avoid
+            result_text:
+              Academic integrity requires original work - use your own creative
+              abilities to meet educational goals and policy requirements
+          - brief: AI collaboration permitted
+            detail: Institution allows AI assistance with proper attribution
+            examples:
+              - Class project allowing technology tools
+              - Collaborative learning exercise
+              - Draft development with instructor approval
+              - Experimental creative assignment
+              - Digital arts class incorporating ai tools
+            result: assistant
+            result_text:
+              Follow institutional guidelines for AI use; focus on learning
+              objectives; ensure substantial personal creative contribution and proper
+              attribution
+      "4.9":
+        text: What's your priority for this personal creative work?
+        context: What matters most for this family/personal project?
+        answers:
+          - brief: Quality and personal touch
+            detail: I want this to be special and personally meaningful
+            examples:
+              - Wedding anniversary scrapbook celebrating 10 years of marriage
+              - Handmade birthday card for elderly grandmother
+              - Custom photo album for child's first year
+              - Personalised artwork for family home
+              - Meaningful gift creation for best friend's graduation
+            result: avoid
+            result_text:
+              Personal meaning comes from your own creative effort - the
+              process of creating adds emotional value that recipients will treasure
+          - brief: Efficiency and good results
+            detail: I want good quality quickly for practical purposes
+            examples:
+              - Quick party invitations for child's last-minute birthday celebration
+              - Simple graphics for family garage sale flyer
+              - Basic photo collage for holiday cards
+              - Easy newsletter template for neighborhood updates
+              - Functional design for home organisation labels
+            result: assistant
+            result_text:
+              Use AI for efficient creation while adding personal touches;
+              focus on practical results that serve your family's needs effectively
   automation:
-    title: "⚙️ Automation/Streamlining"
-    examples: "File organization, email sorting, data processing, workflow optimization"
+    title: ⚙️ Automation/Streamlining
+    examples: File organisation, email sorting, data processing, workflow optimization
     questions:
       "5.1":
-        text: "Does this automation involve high-risk processes or irreversible consequences?"
-        context: "Systems where failure could cause significant problems or loss of oversight"
+        text: Does this automation involve high-risk processes or irreversible consequences?
+        context:
+          Systems where failure could cause significant problems or loss of
+          oversight
         answers:
-          - brief: "Yes"
-            detail: "High-risk or irreversible consequences"
-            examples: "Financial transactions, system deployments, data deletion, critical infrastructure"
-            result: "avoid"
-            result_text: "Human oversight essential"
-          - brief: "No"
-            detail: "Not critical automation"
-            examples: "File organization, email sorting, routine data processing, content formatting"
+          - brief: Yes - High risk
+            detail: High-risk or irreversible consequences
+            examples:
+              - Automatically transferring £2
+              - 500 monthly rent payments
+              - Deploying code changes to live website with 50
+              - 000 daily users
+              - Deleting files older than 30 days from shared drive
+              - Posting to company social media with 25
+              - 000 followers
+              - Automatically approving expense reports over £500
+            result: avoid
+            result_text: Human oversight essential for high-risk processes
+          - brief: No - Low to moderate risk
+            detail: Manageable consequences if something goes wrong
+            examples:
+              - Organising personal photos into folders by date
+              - Sorting daily emails into categories
+              - Formatting weekly team status reports
+              - Backing up personal documents to cloud storage
+              - Scheduling social media posts for hobby blog with 200 followers
             next: "5.2"
       "5.2":
-        text: "Sufficient scale or repetition?"
-        context: "Volume justifies setup time and complexity?"
+        text: Is the setup complexity worth the time savings?
+        context:
+          Consider initial setup time, learning curve, and ongoing maintenance
+          against time saved
         answers:
-          - brief: "No"
-            detail: "Not enough scale/repetition"
-            examples: "One-time tasks, small datasets, infrequent processes, simple manual work"
-            result: "avoid"
-            result_text: "Manual is simpler"
-          - brief: "Yes"
-            detail: "Sufficient scale"
-            examples: "Daily routines, large datasets, frequent repetitive tasks, high-volume processing"
+          - brief: No - Too much overhead
+            detail: Setup or maintenance time exceeds the benefits
+            examples:
+              - One-time organisation of 300 family photos
+              - Automating quarterly report that takes 2 hours every 3 months
+              - Creating system for 15 client invoices per year
+              - Setting up workflow for monthly newsletter to 50 subscribers
+              - Automating weekly grocery list that takes 5 minutes to make
+            result: avoid
+            result_text:
+              Manual approach is more efficient when accounting for setup
+              and maintenance time
+          - brief: Yes - Worth the investment
+            detail: Time savings justify the complexity
+            examples:
+              - Daily processing of 200+ customer service emails
+              - Monthly reconciliation of business expenses across 12 credit cards
+              - Weekly formatting of sales reports from 5 different systems
+              - Organising 10
+              - 000+ family photos from past decade
+              - Daily social media posting for business with specific timing requirements
             next: "5.3"
       "5.3":
-        text: "Can you monitor or override?"
-        context: "Ability to catch errors and intervene?"
+        text: Will you be able to monitor performance and intervene when needed?
+        context: Can you catch errors, pause the system, and fix problems?
         answers:
-          - brief: "No"
-            detail: "Cannot monitor or override"
-            examples: "Black box systems, no visibility into process, irreversible automated actions"
-            result: "avoid"
-            result_text: "Too risky without oversight"
-          - brief: "Yes"
-            detail: "Can monitor and override"
-            examples: "Dashboard monitoring, manual review steps, pause/stop capabilities, rollback options"
+          - brief: No - Can't monitor effectively
+            detail: Cannot monitor or override the automation
+            examples:
+              - System runs overnight with no alerts or logging
+              - Automation handles customer communications without review queue
+              - Bulk file operations with no progress tracking
+              - Automated posting without approval workflows
+              - Financial transfers with no transaction summaries
+            result: avoid
+            result_text: Too risky without oversight capabilities
+          - brief: Yes - Can monitor and control
+            detail: Have visibility and control over the automation
+            examples:
+              - Email automation with daily summary reports
+              - File organisation with before/after logs
+              - Social media scheduler with preview and edit options
+              - Expense processing with flagged items for review
+              - Data processing with error notifications and rollback capabilities
             next: "5.4"
       "5.4":
-        text: "Need to understand the process?"
-        context: "Important for troubleshooting, compliance, or skill maintenance?"
+        text: How important is it that you understand this process deeply?
+        context:
+          Consider skill development, troubleshooting needs, compliance, and
+          career growth
         answers:
-          - brief: "Yes"
-            detail: "Need to understand the process"
-            examples: "Regulated processes, core business functions, learning opportunities, troubleshooting needs"
-            result: "minimal"
-            result_text: "Partial automation; document process; periodic manual execution"
-          - brief: "No"
-            detail: "Don't need to understand"
-            examples: "Routine administrative tasks, standardized processes, non-critical operations"
-            result: "efficient"
-            result_text: "Monitor results; maintain manual override capability"
-
+          - brief: Critical to understand - Core skill/responsibility
+            detail:
+              This is central to your role, career development, or has regulatory
+              requirements
+            examples:
+              - New manager learning to review team performance data
+              - Accountant processing tax documents for first time
+              - Junior developer deploying code changes
+              - Freelancer managing client invoicing and cash flow
+              - Small business owner handling customer service processes
+            next: "5.5"
+          - brief: Somewhat important - Occasional understanding needed
+            detail: Helpful to understand but not essential for daily work
+            examples:
+              - Marketing manager organising campaign assets
+              - Experienced developer setting up automated testing
+              - Established business owner streamlining routine admin tasks
+              - Project manager formatting weekly status reports
+              - Hr coordinator scheduling routine meetings
+            next: "5.6"
+          - brief: Not important - Pure efficiency play
+            detail: Understanding the process doesn't add value to your role
+            examples:
+              - Organising personal digital photos by date
+              - Sorting non-critical emails into folders
+              - Formatting routine reports that never change
+              - Backing up files to multiple locations
+              - Posting standardized social media content on schedule
+            next: "5.7"
+      "5.5":
+        text: Are you in a learning phase where manual experience is valuable?
+        context: New to role, building expertise, or need hands-on understanding
+        answers:
+          - brief: Yes - Still learning
+            detail: Manual experience will help build important skills and judgment
+            examples:
+              - First 6 months as sales manager analysing daily performance metrics
+              - New freelancer learning to track project profitability
+              - Recent graduate processing customer support tickets to understand common
+                issues
+              - Startup founder handling early customer onboarding personally
+            result: avoid
+            result_text:
+              Do this manually while learning; consider automation after
+              6-12 months of hands-on experience
+          - brief: No - Have solid foundation
+            detail: Already understand the process well enough to automate safely
+            examples:
+              - 3-year manager with clear understanding of team metrics wanting to streamline
+                reporting
+              - Experienced freelancer with established billing processes
+              - Seasoned customer service lead automating routine response workflows after
+                2 years of manual handling
+            result: partial
+            result_text:
+              Use partial automation with regular manual check-ins to maintain
+              skills; document the automated process thoroughly
+      "5.6":
+        text: How often do exceptions or edge cases occur?
+        context: Automation works best for predictable, standardised processes
+        answers:
+          - brief: Frequently - Many exceptions
+            detail: Process has lots of special cases or variations
+            examples:
+              - Client billing with custom rates
+              - Project timelines
+              - And payment terms varying by contract
+              - Customer service responses where each inquiry needs personalised attention
+              - Expense processing across multiple departments with different approval
+                rules
+              - Content creation requiring different formats for different platforms
+            result: partial
+            result_text:
+              Automate the routine parts; build in human review for exceptions;
+              maintain flexibility for special cases
+          - brief: Rarely - Mostly standardised
+            detail: Process is predictable with few variations
+            examples:
+              - Weekly team status reports with consistent format
+              - Monthly invoice generation for subscription customers
+              - Daily backup of files to cloud storage
+              - Social media posting of company updates with standard templates
+              - Organising receipts by category and date
+            next: "5.7"
+      "5.7":
+        text: What level of reliability do you need?
+        context: How much tolerance do you have for occasional failures or maintenance?
+        answers:
+          - brief: High reliability required
+            detail: Failures would cause significant problems or embarrassment
+            examples:
+              - Payroll processing for 25 employees
+              - Client invoice generation affecting cash flow
+              - Automated responses to job applicants
+              - Social media posts for professional brand with 5
+              - 000 followers
+              - Daily backup of critical business files
+            result: partial
+            result_text:
+              Use automation with redundancy and frequent monitoring; have
+              backup manual processes ready; test regularly
+          - brief: Moderate reliability acceptable
+            detail: Occasional failures are manageable inconvenience
+            examples:
+              - Personal photo organisation where some errors are easily fixed
+              - Hobby blog posting where missed posts aren't critical
+              - Personal expense tracking where occasional miscategorization is fine
+              - Organizing personal documents where mistakes are low-impact
+            result: full
+            result_text:
+              Full automation appropriate; monitor periodically and fix issues
+              as they arise; maintain simple manual override
 result_types:
   avoid:
-    icon: "⛔"
-    title: "Avoid AI"
-    description: "Use traditional methods, human expertise, or manual processes"
+    title: Avoid AI
+    description: Use traditional methods, human expertise, or manual processes
   minimal:
-    icon: "🟡"
-    title: "Minimal AI"
-    description: "Limited AI assistance with strong human oversight and control"
+    title: Minimal AI
+    description: Limited AI assistance with strong human oversight and control
   assistant:
-    icon: "🟠"
-    title: "AI assistance"
-    description: "Collaborative AI use with significant human contribution and judgment"
+    title: AI assistance
+    description: Collaborative AI use with significant human contribution and judgment
   efficient:
-    icon: "✅"
-    title: "AI efficient"
-    description: "Strategic AI delegation with appropriate verification"
-
+    title: AI efficient
+    description: Strategic AI delegation with appropriate verification
 metadata:
-  title: "Should I use AI?"
-  description: "Make thoughtful decisions about when and how to use AI"
+  title: Should I use AI?
+  description: Make thoughtful decisions about when and how to use AI
   version: "2.0"
