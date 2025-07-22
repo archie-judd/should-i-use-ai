@@ -37,6 +37,7 @@ categories:
               - Researching holiday destinations for an anniversary trip
               - Creating a draft for a personal blog webpage
             next: "1.3"
+
       "1.2":
         text: Can you get an expert to review the AI output before acting on it?
         context: Someone qualified who can catch important errors
@@ -61,6 +62,7 @@ categories:
               - Can't afford £200/hour legal review for small contract
             result: avoid
             result_text: Risk too high without expert validation
+
       "1.3":
         text: Does this involve confidential or sensitive information?
         context:
@@ -86,6 +88,7 @@ categories:
               - Formatting reference list for research paper
               - Organizing holiday photos by date and location
             next: "1.4"
+
       "1.12":
         text: Can you anonymise or remove sensitive details before using AI?
         context: Replace names, numbers, specific details with generic placeholders
@@ -111,6 +114,7 @@ categories:
             result_text:
               Handle sensitive data with appropriate private/secure tools
               only
+
       "1.4":
         text: Are others evaluating your personal abilities or authenticity?
         context:
@@ -120,7 +124,7 @@ categories:
           - brief: Yes
             detail: This should demonstrate my own capabilities or authentic voice
             examples:
-              - College admissions essay for university application
+              - Admissions essay for university application
               - Take-home coding project for developer interview
               - Writing performance review demonstrating management skills
               - Presenting quarterly results to show leadership to executives
@@ -137,6 +141,7 @@ categories:
               - Formatting monthly newsletter for volunteer organization
               - Creating detailed household budget spreadsheet for £6k monthly expenses
             next: "1.5"
+
       "1.5":
         text: Can you verify AI output accuracy?
         context: Do you have the knowledge or tools to check if it's correct?
@@ -160,6 +165,7 @@ categories:
               - Formatting quarterly reports using excel functions i know well
               - Planning european holiday for cities i've visited twice
             next: "1.6"
+
       "1.6":
         text: Will you do this type of task frequently in the future?
         context: Consider if learning the process has long-term value
@@ -193,6 +199,7 @@ categories:
               - Organising documents for selling childhood home
               - Planning one-time company retreat for 35 employees
             next: "1.8"
+
       "1.7":
         text: Is learning this process important for your long-term goals?
         context: Do you need to understand how this works for future success?
@@ -215,6 +222,7 @@ categories:
               - Organising files with established naming convention
               - Converting file formats for client deliverables
             next: "1.10"
+
       "1.8":
         text: Is this genuinely time-sensitive with an unavoidable deadline?
         context: External deadline you cannot control, not procrastination
@@ -238,6 +246,7 @@ categories:
               - Researching business ideas for future venture
               - Planning garden redesign for spring planting
             next: "1.5"
+
       "1.9":
         text: Do you have time to learn properly now?
         context: Can you invest in learning without rushing?
@@ -265,6 +274,7 @@ categories:
               Use AI as learning partner - ask it to explain its reasoning,
               teach you the underlying principles, and quis you on key concepts. Focus
               on understanding 'why' not just 'what.
+
       "1.10":
         text: Is this repetitive or time-consuming work?
         context: Data entry, formatting, bulk processing, etc.?
@@ -287,6 +297,7 @@ categories:
               - Planning surprise 45th birthday for spouse with 28 guests
               - Designing optimal layout for 350-sq-ft home office
             next: "1.13"
+
       "1.11":
         text: Is there a skill atrophy risk?
         context: Will AI use prevent you from maintaining important abilities?
@@ -311,6 +322,7 @@ categories:
               - Calculating compound interest on £18k investment over 15 years
             result: efficient
             result_text: Delegate strategically; verify results
+
       "1.13":
         text: Could regular AI use create unhealthy dependency for decision-making?
         context:
@@ -376,6 +388,7 @@ categories:
               - Picking anniversary holiday destination
               - Deciding whether to spend £400 on car repair or find alternative transportation
             next: "2.1a"
+
       "2.1a":
         text:
           Is this an urgent practical situation where you need immediate guidance
@@ -402,10 +415,11 @@ categories:
             examples:
               - Choosing contractor for bathroom renovation next month
               - Deciding on investment strategy for retirement savings
-              - Selecting college major for next semester
+              - Selecting university major for next semester
               - Picking health insurance plan during open enrollment
               - Choosing childcare provider with 6 weeks to decide
             next: "2.13"
+
       "2.2":
         text:
           Are you making this decision while highly emotional or under extreme
@@ -435,6 +449,7 @@ categories:
               - Considering relationship future after thoughtful conversation
               - Deciding whether to downsise from family home after spouse's death
             next: "2.3"
+
       "2.3":
         text: What kind of support are you looking for?
         context: Different types of AI assistance serve different purposes
@@ -459,7 +474,7 @@ categories:
               is
             examples:
               - Should i break up with my boyfriend?
-              - What career should i choose after college?
+              - What career should i choose after university?
               - How should i discipline my 9-year-old who's been lying?
               - Should we have another baby?
               - How do i handle my father's drinking problem?
@@ -469,6 +484,7 @@ categories:
               Develop your own judgment through self-reflection, journaling,
               or consultation with people your trust, therapists, or counselors who
               know your full situation
+
       "2.4":
         text:
           Does this require understanding your specific values, relationships,
@@ -501,6 +517,7 @@ categories:
               - Figuring out boundaries with demanding friend
               - Dealing with anxiety about upcoming presentation to 40 people
             next: "2.5"
+
       "2.5":
         text:
           Are you trying to build skills for future similar situations, not just
@@ -536,6 +553,7 @@ categories:
             result_text:
               Use AI for emotional processing and coping strategies; consider
               human support for deeper or ongoing emotional needs
+
       "2.13":
         text: Are you using this to avoid a difficult but necessary conversation?
         context:
@@ -567,6 +585,7 @@ categories:
               - Considering major life decision that affects only me
               - Dealing with difficult boss when hr complaints have been ignored
             next: "2.6"
+
       "2.6":
         text: Do you need accountability for this decision?
         context:
@@ -599,6 +618,7 @@ categories:
               - Choosing holiday destination within £500 budget
               - Deciding between two £650/month apartments
             next: "2.7"
+
       "2.7":
         text: Will others be significantly affected by your decision?
         context:
@@ -635,6 +655,7 @@ categories:
               - Choosing studio apartment for single lifestyle
               - Selecting £30/week meal delivery service vs. cooking
             next: "2.9"
+
       "2.8":
         text: Can you involve affected parties in the decision process?
         context: Are the people impacted available to participate or provide input?
@@ -668,6 +689,7 @@ categories:
               When making high-stakes decisions for others, prioritise human
               consultation with relevant experts and people who know the individuals
               involved
+
       "2.9":
         text: Are you actively developing judgment skills in this area?
         context: Building decision-making abilities that matter for your goals
@@ -685,13 +707,14 @@ categories:
           - brief: No - Not focused on judgment development
             detail: I'm not trying to build judgment here
             examples:
-              - Choosing laptop for college-bound son
+              - Choosing laptop for university-bound son
               - Picking restaurant for client dinner
               - Selecting project management tool for 4-person remote team
               - Deciding between two similar £800/month apartments for short-term rental
               - Choosing streaming device for elderly parents
               - Picking winter coat within £100 budget
             next: "2.11"
+
       "2.10":
         text: Do you have time to research and learn properly?
         context: Can you invest in developing your own judgment without rushing?
@@ -724,6 +747,7 @@ categories:
               Use AI as learning partner - have it explain reasoning, teach
               decision frameworks, and walk through the logic while helping with this
               specific decision
+
       "2.11":
         text: Will you face similar decisions frequently?
         context: Is this a recurring type of choice you'll need to make?
@@ -741,7 +765,7 @@ categories:
           - brief: No - Rare or one-time decision
             detail: This is unusual or happens infrequently
             examples:
-              - Choosing community college for high school senior
+              - Choosing community university for high school senior
               - Selecting wedding venue for once-in-lifetime £8k event
               - Picking retirement home for aging parent
               - Choosing architect for custom home build
@@ -749,6 +773,7 @@ categories:
               - Selecting treatment center for family addiction
               - Buying first car after years of public transit
             next: "2.14"
+
       "2.12":
         text: Would developing a systematic approach benefit you?
         context: Would a reusable framework or criteria help with future similar decisions?
@@ -775,6 +800,7 @@ categories:
               - Contractor needs vary significantly by project type and urgency
               - Part-time jobs have too many variables for standard evaluation
             next: "2.14"
+
       "2.14":
         text: What type of input would be most helpful?
         context: What kind of AI assistance do you need?
@@ -810,6 +836,7 @@ categories:
               Get AI recommendation with clear reasoning; independently verify
               key claims and research; make final decision based on your specific needs
               and any factors AI might have missed
+
   research:
     title: 🔍 Research/Learning
     examples: Academic papers, fact-checking, learning new topics, background research
@@ -842,6 +869,7 @@ categories:
               - Background research on potential employer's company culture
               - Understanding cryptocurrency basics before small investment
             next: "3.2"
+
       "3.2":
         text: Are you under significant time pressure for this research?
         context:
@@ -866,6 +894,7 @@ categories:
               - Researching best practices for vegetable gardening before spring planting
                 season
             next: "3.4"
+
       "3.3":
         text: Can you verify the key information independently?
         context: Do you have the knowledge or resources to fact-check critical details?
@@ -894,6 +923,7 @@ categories:
             result_text:
               Go directly to authoritative sources - professional websites,
               government resources, licensed professionals, or verified databases
+
       "3.4":
         text:
           Are you trying to develop research skills or deep expertise in this
@@ -919,6 +949,7 @@ categories:
               - Researching travel requirements for upcoming business trip to germany
               - Learning enough about car maintenance to talk intelligently with mechanic
             next: "3.6"
+
       "3.5":
         text: Do you have time to learn research methods properly?
         context: Can you invest in developing systematic research skills?
@@ -948,6 +979,7 @@ categories:
               Use AI as research tutor - have it explain methodology, teach
               evaluation criteria, and walk through the process while helping with current
               project
+
       "3.6":
         text: How will you use this information?
         context: What's your intended application of the research results?
@@ -988,6 +1020,7 @@ categories:
               Use AI for quick facts and overviews; cross-check important
               details with authoritative sources; efficient for one-time information
               needs
+
   creative:
     title: 🎨 Creative/Personal Expression
     examples: Writing stories, designing graphics, brainstorming ideas, content creation
@@ -1020,6 +1053,7 @@ categories:
               - Experimental photography techniques
               - Creative writing prompts for skill building
             next: "4.2"
+
       "4.2":
         text: Are you developing creative skills or finding your unique voice?
         context: Is building your creative abilities a key goal here?
@@ -1042,6 +1076,7 @@ categories:
               - Designing basic logo for friend's lawn care service
               - Making photo collage for parent's 60th birthday
             next: "4.6"
+
       "4.3":
         text: Is the creative process itself valuable to you?
         context:
@@ -1069,6 +1104,7 @@ categories:
               - Developing writing skills to launch freelance content business
               - Improving drawing ability to illustrate children's book idea
             next: "4.4"
+
       "4.4":
         text: Do you have time to practice and learn at your own pace?
         context: Can you invest time in developing skills without rushing?
@@ -1098,6 +1134,7 @@ categories:
               Use AI as creative tutor - have it explain techniques, suggest
               approaches, and provide examples while you create; focus on learning principles
               through application
+
       "4.5":
         text: Are you working alone or with others?
         context: Is this individual work or part of a collaborative effort?
@@ -1126,6 +1163,7 @@ categories:
             result_text:
               Use AI for technique guidance and feedback; maintain creative
               control and ensure the work reflects your developing artistic vision
+
       "4.6":
         text: Is this for commercial, professional, or educational use?
         context: What's the intended purpose and audience for this creative work?
@@ -1142,7 +1180,7 @@ categories:
           - brief: Educational/Academic use
             detail: For school, training, or formal learning
             examples:
-              - Art project for college portfolio review
+              - Art project for university portfolio review
               - Creative writing assignment for mfa program
               - Design project for graphic arts certificate
               - Video project for film studies class
@@ -1157,6 +1195,7 @@ categories:
               - Playlist and artwork for workout routine
               - Creative gift ideas for spouse's promotion celebration
             next: "4.9"
+
       "4.7":
         text: Do you need to maintain full creative ownership and originality?
         context: Are there legal, ethical, or brand requirements for original work?
@@ -1189,6 +1228,7 @@ categories:
               Use AI as creative collaborator while maintaining majority
               creative control; verify no copyright issues and ensure work aligns with
               professional standards
+
       "4.8":
         text: Does your institution require original work or allow AI collaboration?
         context: Check academic honesty policies and assignment requirements
@@ -1218,6 +1258,7 @@ categories:
               Follow institutional guidelines for AI use; focus on learning
               objectives; ensure substantial personal creative contribution and proper
               attribution
+
       "4.9":
         text: What's your priority for this personal creative work?
         context: What matters most for this family/personal project?
@@ -1246,6 +1287,7 @@ categories:
             result_text:
               Use AI for efficient creation while adding personal touches;
               focus on practical results that serve your family's needs effectively
+
   automation:
     title: ⚙️ Automation/Streamlining
     examples: File organisation, email sorting, data processing, workflow optimization
@@ -1278,6 +1320,7 @@ categories:
               - Backing up personal documents to cloud storage
               - Scheduling social media posts for hobby blog with 200 followers
             next: "5.2"
+
       "5.2":
         text: Is the setup complexity worth the time savings?
         context:
@@ -1306,6 +1349,7 @@ categories:
               - 000+ family photos from past decade
               - Daily social media posting for business with specific timing requirements
             next: "5.3"
+
       "5.3":
         text: Will you be able to monitor performance and intervene when needed?
         context: Can you catch errors, pause the system, and fix problems?
@@ -1329,6 +1373,7 @@ categories:
               - Expense processing with flagged items for review
               - Data processing with error notifications and rollback capabilities
             next: "5.4"
+
       "5.4":
         text: How important is it that you understand this process deeply?
         context:
@@ -1364,6 +1409,7 @@ categories:
               - Backing up files to multiple locations
               - Posting standardized social media content on schedule
             next: "5.7"
+
       "5.5":
         text: Are you in a learning phase where manual experience is valuable?
         context: New to role, building expertise, or need hands-on understanding
@@ -1392,6 +1438,7 @@ categories:
             result_text:
               Use partial automation with regular manual check-ins to maintain
               skills; document the automated process thoroughly
+
       "5.6":
         text: How often do exceptions or edge cases occur?
         context: Automation works best for predictable, standardised processes
@@ -1419,6 +1466,7 @@ categories:
               - Social media posting of company updates with standard templates
               - Organising receipts by category and date
             next: "5.7"
+
       "5.7":
         text: What level of reliability do you need?
         context: How much tolerance do you have for occasional failures or maintenance?
@@ -1447,6 +1495,7 @@ categories:
             result_text:
               Full automation appropriate; monitor periodically and fix issues
               as they arise; maintain simple manual override
+
 result_types:
   avoid:
     title: Avoid AI
