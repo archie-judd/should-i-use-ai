@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;600&display=swap" rel="stylesheet">
-    <style>
+    <style>ind
         * {
             margin: 0;
             padding: 0;
@@ -226,6 +226,14 @@
         }
 
         /* Result View */
+	.result-container {
+	    display: none;
+	}
+		
+	.result-container.active {
+	    display: block;
+	}
+
         .result-card {
             background-color: #1e1e2e;
             border: 2px solid #45475a;
@@ -293,6 +301,12 @@
             background-color: #2a2d3a;
             border-color: #6c7086;
         }
+
+	.btn-icon {
+	  font-size: 1.5em; /* Adjust size as needed */
+	  vertical-align: middle;
+	  margin-right: 6px; /* spacing between icon and text */
+	}
     </style>
 </head>
 <body>
@@ -306,19 +320,29 @@
             <div class="category-selector" id="categoryButtons"></div>
         </div>
 
-        <div id="questionFlow" class="question-container">
+        <div id="questionSection" class="question-container">
             <div id="categoryTitle" class="category-title" style="margin-bottom: 1em; font-size: 1.2em; color: #9dc7e6;"></div>
             <div id="questionCard" class="question-card"></div>
-            <button class="back-btn" onclick="goBack()" id="backButton" style="display: none;">← Back</button>
+		<button aria-label="Go Back" class="back-btn" id="questionBackButton" onclick="goBack()">
+		    <span class="btn-icon">←</span> <span class="btn-text">Back</span>
+		</button>
+		<button aria-label="Start Over" class="reset-btn" id="questionResetButton" onclick="resetTool()">
+		  <span class="btn-icon">⟳</span> <span class="btn-text">Start Again</span>
+		</button>
         </div>
 
-	<div id="resultCard" class="result-card" style="display: none;">
-	    <div class="result-title" id="resultTitle"></div>
-	    <div class="result-description" id="resultDescription"></div>
-	    <button class="reset-btn" onclick="resetTool()">Start Over</button>
+	<div id="resultSection" class="result-container" style="display: none;">
+	    <div id="resultCard" class="result-card">
+		<div class="result-title" id="resultTitle"></div>
+		<div class="result-description" id="resultDescription"></div>
+	    </div>
+	<button aria-label="Go Back" class="back-btn" id="resultBackButton" onclick="goBackFromResult()">
+	    <span class="btn-icon">←</span> <span class="btn-text">Back</span>
+	</button>
+	<button aria-label="Start Over" class="reset-btn" id="resultResetButton" onclick="resetTool()">
+	  <span class="btn-icon">⟳</span> <span class="btn-text">Start Again</span>
+	</button>
 	</div>
-	<button class="back-btn" onclick="goBackFromResult()" id="backFromResultButton" style="display: none;">← Back</button>
-
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js"></script>
@@ -442,10 +466,24 @@
             }
         }
 
-        function updateBackButtonVisibility() {
-            const backButton = document.getElementById('backButton');
-            backButton.style.display = questionPath.length > 0 ? 'inline-block' : 'none';
-        }
+	function updateQuestionButtonsVisibility() {
+	    const backButton = document.getElementById('questionBackButton');
+	    const resetButton = document.getElementById('questionResetButton');
+	    const shouldShow = questionPath.length > 0;
+
+	    backButton.style.display = shouldShow ? 'inline-block' : 'none';
+	    resetButton.style.display = shouldShow ? 'inline-block' : 'none';
+	}
+
+	function updateResultButtonsVisibility() {
+	    const backButton = document.getElementById('resultBackButton');
+	    const resetButton = document.getElementById('resultResetButton');
+	    const shouldShow = questionPath.length > 0;
+
+	    backButton.style.display = shouldShow ? 'inline-block' : 'none';
+	    resetButton.style.display = shouldShow ? 'inline-block' : 'none';
+	}
+
 
         function startCategory(category) {
             currentCategory = category;
@@ -453,11 +491,11 @@
             questionPath = ['category', currentQuestion];
             
             document.getElementById('categorySelection').style.display = 'none';
-            document.getElementById('questionFlow').style.display = 'block';
+            document.getElementById('questionSection').style.display = 'block';
             document.getElementById('categoryTitle').textContent = flowCharts[category].title;
             
             displayQuestion();
-            updateBackButtonVisibility();
+            updateQuestionButtonsVisibility();
         }
 
         function toggleExamples(button, examplesId) {
@@ -504,7 +542,8 @@
                 <div class="answer-options">${answersHtml}</div>
             `;
 
-            updateBackButtonVisibility();
+	    document.getElementById('questionResetButton').style.display = 'inline-block';
+            updateQuestionButtonsVisibility();
         }
 
         function handleAnswer(answerIndex) {
@@ -512,16 +551,15 @@
             const answer = question.answers[answerIndex];
             
             if (answer.result) {
-                showResult(answer.result, answer.resultText);
+                displayResult(answer.result, answer.resultText);
             } else if (answer.next) {
                 currentQuestion = answer.next;
                 questionPath.push(currentQuestion);
                 displayQuestion();
-                updateBackButtonVisibility();
             }
         }
 
-        function showResult(resultType, resultText) {
+        function displayResult(resultType, resultText) {
             const resultCard = document.getElementById('resultCard');
             const resultTitle = document.getElementById('resultTitle');
             const resultDescription = document.getElementById('resultDescription');
@@ -550,19 +588,19 @@
             
             resultDescription.textContent = resultText;
             
-            document.getElementById('questionFlow').style.display = 'none';
-            resultCard.style.display = 'block';
-            document.getElementById('backFromResultButton').style.display = 'inline-block';
+            document.getElementById('questionSection').style.display = 'none';
+	    document.getElementById('resultSection').style.display = 'block';
+	    updateResultButtonsVisibility();
         }
 
 	function goBackFromResult() {
 	    // Hide result view
-	    document.getElementById('resultCard').style.display = 'none';
-	    document.getElementById('backFromResultButton').style.display = 'none';
+	    document.getElementById('resultSection').style.display = 'none';
+	    document.getElementById('resultBackButton').style.display = 'none';
 
 	    // Go back to the last question
 	    currentQuestion = questionPath[questionPath.length - 1];
-	    document.getElementById('questionFlow').style.display = 'block';
+	    document.getElementById('questionSection').style.display = 'block';
 	    displayQuestion();
 	}
 
@@ -572,7 +610,7 @@
 		const previousStep = questionPath[questionPath.length - 1];
 		
 		if (previousStep === 'category') {
-		    document.getElementById('questionFlow').style.display = 'none';
+		    document.getElementById('questionSection').style.display = 'none';
 		    document.getElementById('categorySelection').style.display = 'block';
 		    questionPath = [];
 		    currentCategory = '';
@@ -581,14 +619,14 @@
 		    currentQuestion = previousStep;
 		    displayQuestion();
 		}
-		updateBackButtonVisibility();
+		updateQuestionButtonsVisibility();
 	    }
 	}
 
         function resetTool() {
             document.getElementById('categorySelection').style.display = 'block';
-            document.getElementById('questionFlow').style.display = 'none';
-            document.getElementById('resultCard').style.display = 'none';
+            document.getElementById('questionSection').style.display = 'none';
+	    document.getElementById('resultSection').style.display = 'none';
             
             currentCategory = '';
             currentQuestion = '';
